@@ -1,0 +1,64 @@
+'use client';
+
+import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Project } from "@/app/generated/prisma";
+import { ProjectCard } from "@/components/project_card";
+
+type Props = {
+    projects: Project[];
+    onDeleteProject: (project: Project) => void;
+}
+
+const gridRepeat = "1fr "
+
+export const ProjectCardsWrapper = ({projects, onDeleteProject} : Props) => {
+    const targetRef = useRef(null);
+    const { scrollYProgress } = useScroll({ target: targetRef });
+
+    const [finalOffset, setFinalOffset] = useState(0);
+
+    useEffect(() => {
+        const updateOffset = () => {
+        const totalWidth = (projects.length) * window.innerWidth;
+        const viewportWidth = window.innerWidth;
+
+        const offset = -(totalWidth - viewportWidth);
+        setFinalOffset(offset);
+        console.log("Final Offset:", projects.length, offset);
+        };
+
+        updateOffset();
+        window.addEventListener("resize", updateOffset);
+        return () => window.removeEventListener("resize", updateOffset);
+    }, [projects.length]);
+
+    const x = useTransform(scrollYProgress, [0, 1], ["0px", `${finalOffset}px`]);
+
+    const projectCards = projects.map((project) => (
+        <ProjectCard 
+            key={project.id}
+            id={project.id}
+            title={project.title}
+            description={project.description}
+            link={project.projectUrl}
+            imageLink={project.imageUrl}
+            onDelete={() => onDeleteProject(project)}
+        />
+    ));
+    return(
+        <div className="bg-[#232a49] h-[300vh] pt-[25vh]" ref={targetRef}>
+            <div className="sticky top-[25vh] mb-[25vh] h-[50vh] flex items-center, justify-start overflow-x-hidden">
+                <motion.div
+                    className="grid grid-cols-[var(--projects-count)] grid-rows-[1fr]"
+                    style={{
+                        x,
+                        ['--projects-count' as any]: gridRepeat.repeat(projects.length).trim()
+                    }}
+                >
+                        {projectCards}
+                </motion.div>
+            </div>
+        </div>
+    )
+}
