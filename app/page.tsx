@@ -4,6 +4,8 @@ import HomeClient from "@/components/home_client";
 const prisma = new PrismaClient();
 
 export default async function Home() {
-    const projects = await prisma.project.findMany();
+    const projects = await prisma.project.findMany({
+        orderBy: { createdAt: 'asc' }
+    });
     return <HomeClient projects={projects} />;
 }

@@ -967,6 +967,7 @@ export namespace Prisma {
     description: string | null
     projectUrl: string | null
     imageUrl: string | null
+    createdAt: Date | null
   }
 
   export type ProjectMaxAggregateOutputType = {
@@ -975,6 +976,7 @@ export namespace Prisma {
     description: string | null
     projectUrl: string | null
     imageUrl: string | null
+    createdAt: Date | null
   }
 
   export type ProjectCountAggregateOutputType = {
@@ -983,6 +985,7 @@ export namespace Prisma {
     description: number
     projectUrl: number
     imageUrl: number
+    createdAt: number
     _all: number
   }
 
@@ -993,6 +996,7 @@ export namespace Prisma {
     description?: true
     projectUrl?: true
     imageUrl?: true
+    createdAt?: true
   }
 
   export type ProjectMaxAggregateInputType = {
@@ -1001,6 +1005,7 @@ export namespace Prisma {
     description?: true
     projectUrl?: true
     imageUrl?: true
+    createdAt?: true
   }
 
   export type ProjectCountAggregateInputType = {
@@ -1009,6 +1014,7 @@ export namespace Prisma {
     description?: true
     projectUrl?: true
     imageUrl?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -1090,6 +1096,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    createdAt: Date
     _count: ProjectCountAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
@@ -1115,6 +1122,7 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1123,6 +1131,7 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1131,6 +1140,7 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectScalar = {
@@ -1139,9 +1149,10 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    createdAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "projectUrl" | "imageUrl", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "projectUrl" | "imageUrl" | "createdAt", ExtArgs["result"]["project"]>
 
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
@@ -1152,6 +1163,7 @@ export namespace Prisma {
       description: string
       projectUrl: string
       imageUrl: string
+      createdAt: Date
     }, ExtArgs["result"]["project"]>
     composites: {}
   }
@@ -1580,6 +1592,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Project", 'String'>
     readonly projectUrl: FieldRef<"Project", 'String'>
     readonly imageUrl: FieldRef<"Project", 'String'>
+    readonly createdAt: FieldRef<"Project", 'DateTime'>
   }
     
 
@@ -2947,7 +2960,8 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     projectUrl: 'projectUrl',
-    imageUrl: 'imageUrl'
+    imageUrl: 'imageUrl',
+    createdAt: 'createdAt'
   };
 
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -2999,13 +3013,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -3016,6 +3023,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -3045,6 +3059,7 @@ export namespace Prisma {
     description?: StringFilter<"Project"> | string
     projectUrl?: StringFilter<"Project"> | string
     imageUrl?: StringFilter<"Project"> | string
+    createdAt?: DateTimeFilter<"Project"> | Date | string
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -3053,6 +3068,7 @@ export namespace Prisma {
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -3064,6 +3080,7 @@ export namespace Prisma {
     description?: StringFilter<"Project"> | string
     projectUrl?: StringFilter<"Project"> | string
     imageUrl?: StringFilter<"Project"> | string
+    createdAt?: DateTimeFilter<"Project"> | Date | string
   }, "id" | "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -3072,6 +3089,7 @@ export namespace Prisma {
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    createdAt?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
     _min?: ProjectMinOrderByAggregateInput
@@ -3086,6 +3104,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Project"> | string
     projectUrl?: StringWithAggregatesFilter<"Project"> | string
     imageUrl?: StringWithAggregatesFilter<"Project"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -3141,6 +3160,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    createdAt?: Date | string
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -3149,6 +3169,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    createdAt?: Date | string
   }
 
   export type ProjectUpdateInput = {
@@ -3157,6 +3178,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -3165,6 +3187,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProjectCreateManyInput = {
@@ -3173,6 +3196,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    createdAt?: Date | string
   }
 
   export type ProjectUpdateManyMutationInput = {
@@ -3181,6 +3205,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProjectUncheckedUpdateManyInput = {
@@ -3189,6 +3214,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateInput = {
@@ -3255,12 +3281,24 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type ProjectCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ProjectMaxOrderByAggregateInput = {
@@ -3269,6 +3307,7 @@ export namespace Prisma {
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type ProjectMinOrderByAggregateInput = {
@@ -3277,6 +3316,7 @@ export namespace Prisma {
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3297,12 +3337,7 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3310,7 +3345,15 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -3342,30 +3385,16 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3380,6 +3409,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3410,30 +3450,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3446,6 +3462,19 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
 

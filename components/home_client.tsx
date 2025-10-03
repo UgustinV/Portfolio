@@ -18,6 +18,13 @@ export default function HomeClient({ projects: initialProjects } : { projects: P
         setProjects(prev => [...prev, project]);
     };
 
+    const handleEditProject = (project : Project) => {
+        console.log("Editing Project:", project);
+        console.log("Current Projects List:", projects.map(p => p.id));
+        setProjects(prev => prev.map(p => p.id === project.id ? project : p));
+        console.log("Updated Projects List:", projects.map(p => p.id));
+    };
+
     const handleDeleteProject = (project : Project) => {
         setProjects(prev => prev.filter(p => p.id !== project.id));
     };
@@ -25,7 +32,7 @@ export default function HomeClient({ projects: initialProjects } : { projects: P
         <div>
             <PresentationSection/>
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#1a1d33] to-[#232a49]"/>
-            <ProjectCardsWrapper projects={projects} onDeleteProject={handleDeleteProject} />
+            <ProjectCardsWrapper projects={projects} onDeleteProject={handleDeleteProject} onEditProject={handleEditProject}/>
             {session?.user?.isAdmin ? (
                 <ProjectsForm onAddProject={handleAddProject}/>
             ) : null}

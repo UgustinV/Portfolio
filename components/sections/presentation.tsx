@@ -13,8 +13,8 @@ export const PresentationSection = () => {
     return (
         <div className="flex flex-col h-[100vh] items-center justify-center">
             <motion.h1
-                initial={{ opacity: 0, x: "100vw" }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: "-100vw" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.2 }}
                 className="text-5xl pb-2 animate-[--animate-slide-in]"
             >
@@ -24,7 +24,7 @@ export const PresentationSection = () => {
                 className="mb-[10vh] text-2xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ type: "spring", stiffness: 30, delay: 0.4 }}
+                transition={{ type: "spring", stiffness: 30, delay: 0.2 }}
             >
                 Développeur Web
             </motion.h2>

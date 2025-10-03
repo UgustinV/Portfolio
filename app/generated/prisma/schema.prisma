@@ -15,11 +15,12 @@ datasource db {
 }
 
 model Project {
-  id          String @id @unique @default(cuid())
+  id          String   @id @unique @default(cuid())
   title       String
   description String
   projectUrl  String
   imageUrl    String
+  createdAt   DateTime @default(now())
 }
 
 model User {

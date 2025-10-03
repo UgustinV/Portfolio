@@ -8,11 +8,12 @@ import { ProjectCard } from "@/components/project_card";
 type Props = {
     projects: Project[];
     onDeleteProject: (project: Project) => void;
+    onEditProject: (project: Project) => void;
 }
 
 const gridRepeat = "1fr "
 
-export const ProjectCardsWrapper = ({projects, onDeleteProject} : Props) => {
+export const ProjectCardsWrapper = ({projects, onDeleteProject, onEditProject} : Props) => {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: targetRef });
 
@@ -25,7 +26,6 @@ export const ProjectCardsWrapper = ({projects, onDeleteProject} : Props) => {
 
         const offset = -(totalWidth - viewportWidth);
         setFinalOffset(offset);
-        console.log("Final Offset:", projects.length, offset);
         };
 
         updateOffset();
@@ -43,12 +43,14 @@ export const ProjectCardsWrapper = ({projects, onDeleteProject} : Props) => {
             description={project.description}
             projectUrl={project.projectUrl}
             imageUrl={project.imageUrl}
+            createdAt={project.createdAt}
             onDelete={() => onDeleteProject(project)}
+            onUpdate={onEditProject}
         />
     ));
     return(
         <div className="bg-[#232a49] h-[300vh] pt-[25vh] lg:pt-[10vh]" ref={targetRef}>
-            <div className="sticky top-[25vh] mb-[25vh] h-[50vh] lg:h-[78vh] lg:mb-[8vh] lg:pb-[2vh] lg:top-[10vh] flex items-center, justify-start overflow-x-hidden">
+            <div className="sticky top-[25vh] mb-[25vh] h-[50vh] lg:h-[78vh] lg:mb-[8vh] lg:pb-[2vh] lg:top-[10vh] flex items-center, justify-start overflow-hidden">
                 <motion.div
                     className="grid grid-cols-[var(--projects-count)] grid-rows-[1fr]"
                     style={{

@@ -11,13 +11,14 @@ interface ProjectCardProps {
     description: string;
     projectUrl: string;
     imageUrl: string;
+    createdAt: Date;
     onDelete: (id: string) => void;
-    onUpdate?: (id: string, updatedProject: Partial<ProjectCardProps>) => void;
+    onUpdate: (project: Project) => void;
 }
 
-export const ProjectCard = ({ id, title, description, projectUrl, imageUrl, onDelete, onUpdate }: ProjectCardProps) => {
+export const ProjectCard = ({ id, title, description, projectUrl, imageUrl, createdAt, onDelete, onUpdate }: ProjectCardProps) => {
     const { data: session } = useSession();
-    const project: Project = { id, title, description, projectUrl, imageUrl };
+    const project: Project = { id, title, description, projectUrl, imageUrl, createdAt };
 
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState<Partial<Project>>({ title: project.title, description: project.description, projectUrl: project.projectUrl, imageUrl: project.imageUrl });
@@ -70,7 +71,6 @@ export const ProjectCard = ({ id, title, description, projectUrl, imageUrl, onDe
                 return value !== (project as Project)[key as keyof Project];
             })
         );
-
         const res = await fetch("/api/projects", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -78,14 +78,15 @@ export const ProjectCard = ({ id, title, description, projectUrl, imageUrl, onDe
         });
 
         if (res.ok) {
-            onUpdate?.(project.id, updatedFields);
+            const updatedProject = await res.json();
+            onUpdate(updatedProject.project);
             setIsEditing(false);
         }
-        };
+    };
 
     return (
         <motion.div
-            className="w-[96vw] ml-[2vw] mr-[2vw] rounded-lg shadow-md hover:shadow-lg bg-[#2a3760] lg:w-[76vw] lg:ml-[12vw] lg:mr-[12vw]"
+            className="flex flex-col w-[96vw] ml-[2vw] mr-[2vw] rounded-lg shadow-md hover:shadow-lg bg-[#2a3760] lg:w-[76vw] lg:ml-[12vw] lg:mr-[12vw]"
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -133,38 +134,32 @@ export const ProjectCard = ({ id, title, description, projectUrl, imageUrl, onDe
                 </div>
             </div>
         ) : (
-            <>
-            <a
-                className="h-full w-full block text-white hover:text-[#355492] p-[2vh]"
-                href={projectUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <div className="h-[28vh] rounded-lg mb-[1vh] overflow-scroll lg:h-[50vh]">
-                    <img className="w-full" src={imageUrl} alt="Image du projet" />
-                </div>
-                <h2 className="text-2xl h-[5vh] lg:text-5xl lg:h-[8vh]">{title}</h2>
-                <p className="text-sm h-[8vh] lg:text-2xl lg:h-[12vh]">
-                {description}
-                </p>
-            </a>
-            {session?.user?.isAdmin ? (
-                <div className="flex gap-2 p-2">
-                <button
-                    className="bg-red-600 px-4 py-2 rounded"
-                    onClick={() => deleteProject(id)}
+            <div className="p-[2vh] h-[50vh]">
+                <a
+                    className="h-full w-full block text-white hover:text-[#355492]"
+                    href={projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
-                    Supprimer
-                </button>
-                <button
-                    className="bg-yellow-600 px-4 py-2 rounded"
-                    onClick={() => setIsEditing(true)}
-                >
-                    Modifier
-                </button>
-                </div>
-            ) : null}
-            </>
+                    <div className="h-[28vh] mb-[1vh] overflow-scroll lg:h-[50vh]">
+                        <img className="w-full" src={imageUrl} alt="Image du projet" />
+                    </div>
+                    <div className="flex flex-col">
+                        <h2 className="text-2xl py-4 lg:text-5xl">{title}</h2>
+                        <p className="text-sm lg:text-2xl h-[6vh] overflow-hidden text-ellipsis">{description}</p>
+                    </div>
+                </a>
+                {session?.user?.isAdmin ? (
+                    <div className="flex gap-2">
+                        <button className="bg-red-600 px-[2vh] py-[1vh] rounded hover:bg-red-400 hover:cursor-pointer" onClick={() => deleteProject(id)}>
+                            Supprimer
+                        </button>
+                        <button className="bg-yellow-600 px-[2vh] py-[1vh] rounded hover:bg-yellow-400 hover:cursor-pointer" onClick={() => setIsEditing(true)}>
+                            Modifier
+                        </button>
+                    </div>
+                ) : null}
+            </div>
         )}
         </motion.div>
     );
