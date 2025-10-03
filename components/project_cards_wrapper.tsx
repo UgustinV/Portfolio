@@ -7,13 +7,11 @@ import { ProjectCard } from "@/components/project_card";
 
 type Props = {
     projects: Project[];
-    onDeleteProject: (project: Project) => void;
-    onEditProject: (project: Project) => void;
 }
 
 const gridRepeat = "1fr "
 
-export const ProjectCardsWrapper = ({projects, onDeleteProject, onEditProject} : Props) => {
+export const ProjectCardsWrapper = ({projects} : Props) => {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: targetRef });
 
@@ -44,8 +42,6 @@ export const ProjectCardsWrapper = ({projects, onDeleteProject, onEditProject} :
             projectUrl={project.projectUrl}
             imageUrl={project.imageUrl}
             createdAt={project.createdAt}
-            onDelete={() => onDeleteProject(project)}
-            onUpdate={onEditProject}
         />
     ));
     return(

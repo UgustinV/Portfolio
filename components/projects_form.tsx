@@ -47,10 +47,11 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
 
     return (
         <div>
-            <form onSubmit={addProject}>
-                <div>
+            <h1 className="text-2xl font-bold pb-2">Ajouter un projet</h1>
+            <form className="flex flex-col gap-2" onSubmit={addProject}>
                     <label htmlFor="title">Nom</label>
                     <input
+                        className="border rounded"
                         id="title"
                         type="text"
                         value={title}
@@ -58,6 +59,7 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
                     />
                     <label htmlFor="description">Description</label>
                     <input
+                        className="border rounded"
                         id="description"
                         type="text"
                         value={description}
@@ -65,6 +67,7 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
                     />
                     <label htmlFor="projectUrl">Lien</label>
                     <input
+                        className="border rounded"
                         id="projectUrl"
                         type="text"
                         value={projectUrl}
@@ -72,12 +75,12 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
                     />
                     <label htmlFor="projectImage">Image</label>
                     <input type="file"
+                        className="border rounded w-fit hover:cursor-pointer px-4 py-2"
                         id="projectImage"
                         accept="image/webp"
                         onChange={(e) => setImageFile(e.target.files?.[0] || null)}
                     />
-                    <button type="submit">Valider</button>
-                </div>
+                    <button type="submit" className="bg-green-600 px-4 py-2 rounded hover:cursor-pointer w-fit">Valider</button>
             </form>
             {success && <div style={{ color: "green" }}>Projet ajouté avec succès !</div>}
         </div>
