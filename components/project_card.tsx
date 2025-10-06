@@ -41,26 +41,30 @@ export const ProjectCard = ({
         if (!img || !container) return;
 
         if (!img.complete) {
-            await new Promise(resolve => {
-            img.onload = resolve;
+                await new Promise(resolve => {
+                img.onload = resolve;
             });
         }
 
         const scrollAmount = Math.max(0, img.offsetHeight - container.offsetHeight);
 
         if (scrollAmount > 0) {
+            const baseSpeed = 25;
+            const calculatedDuration = scrollAmount / baseSpeed;
+            
+            const duration = Math.max(15, Math.min(120, calculatedDuration));
             imageControls.start({
-            y: [0, -scrollAmount, 0],
-            transition: {
-                duration: 40,
-                times: [0, 0.5, 1],
-                ease: "linear",
-                repeat: Infinity
-            }
+                y: [0, 0, -scrollAmount, 0],
+                transition: {
+                    duration: duration,
+                    times: [0, 0.05, 0.5, 1],
+                    ease: "linear",
+                    repeat: Infinity
+                }
             });
         }
         };
-        
+
         setupImageAnimation();
     }, [imageControls]);
 
@@ -84,25 +88,25 @@ export const ProjectCard = ({
 
     const handleHoverStart = () => {
         overlayControls.start({
-        height: titleHeight + descHeight + 48,
-        transition: { duration: 0.3, ease: "easeOut" },
+            height: titleHeight + descHeight + 48,
+            transition: { duration: 0.3, ease: "easeOut" },
         });
         
         descControls.start({
-        opacity: 1,
-        transition: { duration: 0.2, delay: 0.1 },
+            opacity: 1,
+            transition: { duration: 0.2, delay: 0.1 },
         });
     };
 
     const handleHoverEnd = () => {
         overlayControls.start({
-        height: titleHeight + 32,
-        transition: { duration: 0.3, ease: "easeOut" },
+            height: titleHeight + 32,
+            transition: { duration: 0.3, ease: "easeOut" },
         });
         
         descControls.start({
-        opacity: 0,
-        transition: { duration: 0.2 },
+            opacity: 0,
+            transition: { duration: 0.2 },
         });
     };
 
