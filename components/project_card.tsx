@@ -1,44 +1,137 @@
 "use client";
 
-import { useSession } from "next-auth/react";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Project } from "@/app/generated/prisma";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 interface ProjectCardProps {
-    id: string;
-    title: string;
-    description: string;
-    projectUrl: string;
-    imageUrl: string;
-    createdAt: Date;
+  id: string;
+  title: string;
+  description: string;
+  projectUrl: string;
+  imageUrl: string;
+  createdAt?: string | Date;
 }
 
-export const ProjectCard = ({ id, title, description, projectUrl, imageUrl, createdAt }: ProjectCardProps) => {
-    return (
-        <motion.div
-            className="flex flex-col w-[96vw] ml-[2vw] mr-[2vw] rounded-lg shadow-md hover:shadow-lg bg-[#2a3760] lg:w-[76vw] lg:ml-[12vw] lg:mr-[12vw]"
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+type Controls = ReturnType<typeof useAnimation>;
+
+export const ProjectCard = ({
+  id,
+  title,
+  description,
+  projectUrl,
+  imageUrl,
+}: ProjectCardProps) => {
+  const overlayControls: Controls = useAnimation();
+  const descControls: Controls = useAnimation();
+
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const descRef = useRef<HTMLParagraphElement | null>(null);
+
+  const [titleHeight, setTitleHeight] = useState(0);
+  const [descHeight, setDescHeight] = useState(0);
+
+  useEffect(() => {
+    const measure = () => {
+      const titleEl = titleRef.current;
+      const descEl = descRef.current;
+      if (!titleEl || !descEl) return;
+
+      setTitleHeight(titleEl.offsetHeight);
+      setDescHeight(descEl.scrollHeight);
+
+      // Initialize: overlay shows only title
+      overlayControls.set({ height: titleEl.offsetHeight + 32 }); // 32px for padding
+      descControls.set({ opacity: 0 });
+    };
+
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [overlayControls, descControls]);
+
+  const handleHoverStart = () => {
+    // Expand overlay to show title + description
+    overlayControls.start({
+      height: titleHeight + descHeight + 48, // Add padding
+      transition: { duration: 0.3, ease: "easeOut" },
+    });
+    
+    // Fade in description
+    descControls.start({
+      opacity: 1,
+      transition: { duration: 0.2, delay: 0.1 },
+    });
+  };
+
+  const handleHoverEnd = () => {
+    // Shrink overlay to show only title
+    overlayControls.start({
+      height: titleHeight + 32, // Just title + padding
+      transition: { duration: 0.3, ease: "easeOut" },
+    });
+    
+    // Hide description
+    descControls.start({
+      opacity: 0,
+      transition: { duration: 0.2 },
+    });
+  };
+
+  return (
+    <motion.div
+        className="flex flex-col w-[96vw] ml-[2vw] mr-[2vw] rounded-2xl shadow-md hover:shadow-2xl lg:w-[76vw] lg:ml-[12vw] lg:mr-[12vw] overflow-hidden"
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <div className="relative h-[40vh] lg:h-[80vh]">
+        <motion.a
+          className="absolute inset-0 block text-white rounded-2xl overflow-hidden"
+          href={projectUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onHoverStart={handleHoverStart}
+          onHoverEnd={handleHoverEnd}
         >
-            <div className="p-[2vh] h-[50vh]">
-                <a
-                    className="h-full w-full block text-white hover:text-[#355492]"
-                    href={projectUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+            <motion.img
+                className="absolute w-full object-cover"
+                src={imageUrl}
+                alt={`Image du projet ${title}`}
+                animate={{
+                    top: ["0%", "-100%", "0%"] 
+                }}
+                transition={{ 
+                    duration: 40,  // Total animation duration (adjust as needed)
+                    ease: "linear",
+                    repeat: Infinity,
+                    times: [0, 0.5, 1]  // Keyframes timing (halfway point is -100%)
+                }}
+            />
+            <motion.div
+                ref={overlayRef}
+                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 to-transparent px-6 py-4 overflow-hidden"
+                animate={overlayControls}
+            >
+            <div className="relative">
+                <h2 ref={titleRef} className="text-2xl lg:text-5xl leading-tight mb-4">
+                    {title}
+                </h2>
+                <motion.div
+                    ref={descRef}
+                    className="text-sm lg:text-2xl"
+                    animate={descControls}
+                    initial={{ opacity: 0 }}
                 >
-                    <div className="h-[28vh] mb-[1vh] overflow-scroll lg:h-[50vh]">
-                        <img className="w-full" src={imageUrl} alt="Image du projet" />
-                    </div>
-                    <div className="flex flex-col">
-                        <h2 className="text-2xl py-4 lg:text-5xl">{title}</h2>
-                        <p className="text-sm lg:text-2xl h-[6vh] overflow-hidden text-ellipsis">{description}</p>
-                    </div>
-                </a>
+                    {description}
+              </motion.div>
             </div>
-        </motion.div>
-    );
+          </motion.div>
+        </motion.a>
+      </div>
+    </motion.div>
+  );
 };
+
+export default ProjectCard;

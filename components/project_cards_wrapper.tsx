@@ -46,7 +46,7 @@ export const ProjectCardsWrapper = ({projects} : Props) => {
     ));
     return(
         <div className="bg-[#232a49] h-[300vh] pt-[25vh] lg:pt-[10vh]" ref={targetRef}>
-            <div className="sticky top-[25vh] mb-[25vh] h-[50vh] lg:h-[78vh] lg:mb-[8vh] lg:pb-[2vh] lg:top-[10vh] flex items-center, justify-start overflow-hidden">
+            <div className="sticky top-[25vh] mb-[25vh] h-[50vh] lg:h-[80vh] lg:mb-[10vh] lg:top-[10vh] flex items-center, justify-start overflow-hidden rounded-2xl">
                 <motion.div
                     className="grid grid-cols-[var(--projects-count)] grid-rows-[1fr]"
                     style={{
