@@ -33,60 +33,93 @@ export const ProjectCard = ({
 
     const [titleHeight, setTitleHeight] = useState(0);
     const [descHeight, setDescHeight] = useState(0);
+    const [isImageTall, setIsImageTall] = useState(true);
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const checkMobile = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         const setupImageAnimation = async () => {
-        const img = imageRef.current;
-        const container = containerRef.current;
-        if (!img || !container) return;
+            const img = imageRef.current;
+            const container = containerRef.current;
+            if (!img || !container) return;
 
-        if (!img.complete) {
-                await new Promise(resolve => {
-                img.onload = resolve;
-            });
-        }
+            if (!img.complete) {
+                    await new Promise(resolve => {
+                    img.onload = resolve;
+                });
+            }
 
-        const scrollAmount = Math.max(0, img.offsetHeight - container.offsetHeight);
+            const scrollAmount = Math.max(0, img.offsetHeight - container.offsetHeight);
 
-        if (scrollAmount > 0) {
-            const baseSpeed = 25;
-            const calculatedDuration = scrollAmount / baseSpeed;
-            
-            const duration = Math.max(15, Math.min(120, calculatedDuration));
-            imageControls.start({
-                y: [0, 0, -scrollAmount, 0],
-                transition: {
-                    duration: duration,
-                    times: [0, 0.05, 0.5, 1],
-                    ease: "linear",
-                    repeat: Infinity
-                }
-            });
-        }
+            if (scrollAmount > 0) {
+                const baseSpeed = 25;
+                const calculatedDuration = scrollAmount / baseSpeed;
+                
+                const duration = Math.max(15, Math.min(120, calculatedDuration));
+                imageControls.start({
+                    y: [0, 0, -scrollAmount, 0],
+                    transition: {
+                        duration: duration,
+                        times: [0, 0.05, 0.5, 1],
+                        ease: "linear",
+                        repeat: Infinity
+                    }
+                });
+            }
+            else {
+                setIsImageTall(false);
+            }
         };
 
         setupImageAnimation();
     }, [imageControls]);
 
     useEffect(() => {
-        const measure = () => {
+    const measure = () => {
+        
         const titleEl = titleRef.current;
         const descEl = descRef.current;
-        if (!titleEl || !descEl) return;
 
-        setTitleHeight(titleEl.offsetHeight);
-        setDescHeight(descEl.scrollHeight);
+        if (!titleEl || !descEl) {
+            return;
+        }
 
-        overlayControls.set({ height: titleEl.offsetHeight + 32 });
-        descControls.set({ opacity: 0 });
-        };
+        const titleHeight = titleEl.offsetHeight;
+        const descHeight = descEl.scrollHeight;
+        
+        setTitleHeight(titleHeight);
+        setDescHeight(descHeight);
 
-        measure();
-        window.addEventListener("resize", measure);
-        return () => window.removeEventListener("resize", measure);
-    }, [overlayControls, descControls]);
+        if (isMobile) {
+            const newHeight = titleHeight + descHeight + 48;
+            overlayControls.set({ height: newHeight });
+            descControls.set({ opacity: 1 });
+        }
+        else {
+            overlayControls.set({ height: titleHeight + 32 });
+        }
+    };
+
+    measure();
+    
+    window.addEventListener("resize", measure);
+    return () => {
+        window.removeEventListener("resize", measure);
+    };
+}, [overlayControls, descControls, isMobile]);
 
     const handleHoverStart = () => {
+        if(isMobile) return;
         overlayControls.start({
             height: titleHeight + descHeight + 48,
             transition: { duration: 0.3, ease: "easeOut" },
@@ -99,6 +132,7 @@ export const ProjectCard = ({
     };
 
     const handleHoverEnd = () => {
+        if(isMobile) return;
         overlayControls.start({
             height: titleHeight + 32,
             transition: { duration: 0.3, ease: "easeOut" },
@@ -110,6 +144,8 @@ export const ProjectCard = ({
         });
     };
 
+    const imageClass = `absolute w-full ${isImageTall ? 'h-auto' : 'h-full'} object-cover object-top`;
+
     return (
         <motion.div
             className="flex flex-col w-[96vw] ml-[2vw] mr-[2vw] rounded-2xl shadow-md hover:shadow-2xl lg:w-[76vw] lg:ml-[12vw] lg:mr-[12vw] overflow-hidden"
@@ -118,7 +154,7 @@ export const ProjectCard = ({
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
-        <div ref={containerRef} className="relative h-[40vh] lg:h-[80vh]">
+        <div ref={containerRef} className="relative h-[50vh] lg:h-[80vh]">
             <motion.a
                 className="absolute inset-0 block text-white overflow-hidden"
                 href={projectUrl}
@@ -129,7 +165,7 @@ export const ProjectCard = ({
             >
                 <motion.img
                     ref={imageRef}
-                    className="absolute w-full h-auto object-cover object-top"
+                    className={imageClass}
                     src={imageUrl}
                     alt={`Image du projet ${title}`}
                     animate={imageControls}
