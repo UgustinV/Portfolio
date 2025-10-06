@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
 
 export async function POST(req: Request) {
+    const session = await getServerSession();
+    if (!session?.user?.isAdmin) {
+        return Response.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const formData = await req.formData();
     const file = formData.get("file") as File;
 

@@ -1,7 +1,13 @@
+import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 
 export async function POST(req: Request) {
+    const session = await getServerSession();
+    if (!session?.user?.isAdmin) {
+        return Response.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const url = await req.json();
     if(!url) {
         return NextResponse.json({ error: "No file to delete" }, { status: 400 });
