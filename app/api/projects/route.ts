@@ -16,7 +16,7 @@ export async function POST(request: Request) {
         const project = await prisma.project.create({
             data: { title, description, projectUrl, tags, imageUrl },
         });
-        return NextResponse.json({ success: true, project }, { status: 201 });
+        return NextResponse.json({ success: true, project }, { status: 201, headers: { "Cache-Control": "no-cache, no-store, must-revalidate" } });
     } catch (error : any) {
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
@@ -33,7 +33,7 @@ export async function DELETE(request: Request) {
         const project = await prisma.project.delete({
             where : { id: id },
         });
-        return NextResponse.json({ success: true, project });
+        return NextResponse.json({ success: true, project }, { status: 200 , headers: { "Cache-Control": "no-cache, no-store, must-revalidate" } });
     } catch (error : any) {
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
@@ -50,7 +50,7 @@ export async function PUT(request: Request) {
             where: { id },
             data,
         });
-        return NextResponse.json({ success: true, project }, { status: 201 });
+        return NextResponse.json({ success: true, project }, { status: 201, headers: { "Cache-Control": "no-cache, no-store, must-revalidate" } });
     } catch (error : any) {
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
