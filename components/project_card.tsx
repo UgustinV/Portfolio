@@ -146,7 +146,7 @@ export const ProjectCard = ({
         });
     };
 
-    const imageClass = `absolute w-full ${isImageTall ? 'h-auto' : 'h-full'} object-contain object-top`;
+    const imageClass = `absolute w-full ${isImageTall ? 'h-auto' : 'h-full'} object-cover object-top`;
 
     return (
         <motion.div
@@ -192,7 +192,7 @@ export const ProjectCard = ({
                             {tags.length > 0 && (
                                 <div className="mt-2 flex flex-wrap gap-2">
                                     {tags.map((tag) => (
-                                        <span key={tag} className="text-sm font-semibold px-2 py-1 rounded relative z-10 bg-white/15 backdrop-blur-md">
+                                        <span key={tag} className="text-[10px] lg:text-sm font-semibold px-1 py-0.5 lg:px-2 lg:py-1 rounded relative z-10 bg-white/15 backdrop-blur-md">
                                             {tag}
                                         </span>
                                     ))}
