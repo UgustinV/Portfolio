@@ -9,8 +9,18 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [projectUrl, setProjectUrl] = useState("");
+    const [tags, setTags] = useState<string[]>([]);
+    const [newTags, setNewTags] = useState("");
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [success, setSuccess] = useState(false);
+
+    const addTag = () => {
+        const trimmedTags = newTags.split(',').map(t => t.trim()).filter(t => !tags.includes(t));
+        if (trimmedTags && trimmedTags[0] !== "") {
+            setTags(prev => [...prev, ...trimmedTags]);
+            setNewTags("");
+        }
+    };
 
     const addProject = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -32,7 +42,7 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
         const res = await fetch("/api/projects", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title, description, projectUrl, imageUrl }),
+            body: JSON.stringify({ title, description, projectUrl, tags, imageUrl }),
         });
         if (res.ok) {
             const data = await res.json();
@@ -40,6 +50,8 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
             setTitle("");
             setDescription("");
             setProjectUrl("");
+            setTags([]);
+            setNewTags("");
             setSuccess(true);
             setTimeout(() => setSuccess(false), 3000);
         }
@@ -65,6 +77,29 @@ export const ProjectsForm = ({ onAddProject }: ProjectsFormProps) => {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
+                    <label htmlFor="tags">Tags</label>
+                    <div>
+                        {tags.map(tag => (
+                            <button onClick={() => setTags(tags.filter(t => t !== tag))} key={tag} className="border rounded px-2 py-1 mr-2 hover:cursor-pointer hover:bg-red-600">
+                                {tag}
+                            </button>
+                        ))}
+                    </div>
+                    <input
+                        id="tags"
+                        type="text"
+                        value={newTags}
+                        onKeyDown={e => {
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                                addTag();
+                            }
+                        }}
+                        onChange={e => setNewTags(e.target.value)}
+                        placeholder="Ajoutez un tag (ou plusieurs, séparés par des virgules)"
+                        className="border rounded"
+                    />
+                    <button type="button" onClick={addTag}>Ajouter un tag</button>
                     <label htmlFor="projectUrl">Lien</label>
                     <input
                         className="border rounded"

@@ -88,11 +88,6 @@ export const authOptions: NextAuthOptions = {
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60,
     },
-    pages: {
-        signIn: '/api/auth/signin',
-        signOut: '/api/auth/signout',
-        error: '/api/auth/error',
-    },
 };
 
 const handler = NextAuth(authOptions);

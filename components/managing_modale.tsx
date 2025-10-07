@@ -51,7 +51,7 @@ export const ManagingModale = ({ projects: initialProjects, onDeleteProject, onE
         <div className="fixed top-10 bottom-10 z-50 w-full overflow-y-hidden rounded">
             <div className="flex flex-col bg-[#46464686] mx-[5vw] p-6 rounded-lg shadow-lg w-[90vw] h-full overflow-y-scroll">
                 <div className="flex flex-row justify-between">
-                    <h2 className="text-2xl font-bold mb-4">Manage Projects</h2>
+                    <h2 className="text-2xl font-bold mb-4">Gérer les Projets</h2>
                     <button className="text-2xl mb-4 hover:cursor-pointer border rounded-lg px-2 py-1" onClick={() => onHideModale(true)}>Fermer</button>
                 </div>
                 {isEditing && editProject ?
@@ -67,13 +67,13 @@ export const ManagingModale = ({ projects: initialProjects, onDeleteProject, onE
                             <p className="mb-2">{project.description}</p>
                             <div className="flex gap-2">
                                 <button className="bg-red-600 text-white px-4 py-2 rounded" onClick={() => deleteProject(project)}>
-                                    Delete
+                                    Supprimer
                                 </button>
                                 <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={() => {
                                     setIsEditing(true)
                                     setEditProject(project)
                                 }}>
-                                    Edit
+                                    Modifier
                                 </button>
                             </div>
                         </div>

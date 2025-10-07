@@ -985,6 +985,7 @@ export namespace Prisma {
     description: number
     projectUrl: number
     imageUrl: number
+    tags: number
     createdAt: number
     _all: number
   }
@@ -1014,6 +1015,7 @@ export namespace Prisma {
     description?: true
     projectUrl?: true
     imageUrl?: true
+    tags?: true
     createdAt?: true
     _all?: true
   }
@@ -1096,6 +1098,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    tags: string[]
     createdAt: Date
     _count: ProjectCountAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
@@ -1122,6 +1125,7 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    tags?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["project"]>
 
@@ -1131,6 +1135,7 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    tags?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["project"]>
 
@@ -1140,6 +1145,7 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    tags?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["project"]>
 
@@ -1149,10 +1155,11 @@ export namespace Prisma {
     description?: boolean
     projectUrl?: boolean
     imageUrl?: boolean
+    tags?: boolean
     createdAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "projectUrl" | "imageUrl" | "createdAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "projectUrl" | "imageUrl" | "tags" | "createdAt", ExtArgs["result"]["project"]>
 
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
@@ -1163,6 +1170,7 @@ export namespace Prisma {
       description: string
       projectUrl: string
       imageUrl: string
+      tags: string[]
       createdAt: Date
     }, ExtArgs["result"]["project"]>
     composites: {}
@@ -1592,6 +1600,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Project", 'String'>
     readonly projectUrl: FieldRef<"Project", 'String'>
     readonly imageUrl: FieldRef<"Project", 'String'>
+    readonly tags: FieldRef<"Project", 'String[]'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
   }
     
@@ -2961,6 +2970,7 @@ export namespace Prisma {
     description: 'description',
     projectUrl: 'projectUrl',
     imageUrl: 'imageUrl',
+    tags: 'tags',
     createdAt: 'createdAt'
   };
 
@@ -3059,6 +3069,7 @@ export namespace Prisma {
     description?: StringFilter<"Project"> | string
     projectUrl?: StringFilter<"Project"> | string
     imageUrl?: StringFilter<"Project"> | string
+    tags?: StringNullableListFilter<"Project">
     createdAt?: DateTimeFilter<"Project"> | Date | string
   }
 
@@ -3068,6 +3079,7 @@ export namespace Prisma {
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    tags?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -3080,6 +3092,7 @@ export namespace Prisma {
     description?: StringFilter<"Project"> | string
     projectUrl?: StringFilter<"Project"> | string
     imageUrl?: StringFilter<"Project"> | string
+    tags?: StringNullableListFilter<"Project">
     createdAt?: DateTimeFilter<"Project"> | Date | string
   }, "id" | "id">
 
@@ -3089,6 +3102,7 @@ export namespace Prisma {
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    tags?: SortOrder
     createdAt?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
@@ -3104,6 +3118,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Project"> | string
     projectUrl?: StringWithAggregatesFilter<"Project"> | string
     imageUrl?: StringWithAggregatesFilter<"Project"> | string
+    tags?: StringNullableListFilter<"Project">
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
   }
 
@@ -3160,6 +3175,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    tags?: ProjectCreatetagsInput | string[]
     createdAt?: Date | string
   }
 
@@ -3169,6 +3185,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    tags?: ProjectCreatetagsInput | string[]
     createdAt?: Date | string
   }
 
@@ -3178,6 +3195,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    tags?: ProjectUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -3187,6 +3205,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    tags?: ProjectUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -3196,6 +3215,7 @@ export namespace Prisma {
     description: string
     projectUrl: string
     imageUrl: string
+    tags?: ProjectCreatetagsInput | string[]
     createdAt?: Date | string
   }
 
@@ -3205,6 +3225,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    tags?: ProjectUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -3214,6 +3235,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     projectUrl?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
+    tags?: ProjectUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -3281,6 +3303,14 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3298,6 +3328,7 @@ export namespace Prisma {
     description?: SortOrder
     projectUrl?: SortOrder
     imageUrl?: SortOrder
+    tags?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -3385,8 +3416,17 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type ProjectCreatetagsInput = {
+    set: string[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type ProjectUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {

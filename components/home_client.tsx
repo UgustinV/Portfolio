@@ -11,6 +11,7 @@ import { FooterSection } from "@/components/sections/footer";
 import { ContactSection } from "@/components/sections/contact";
 import { SectionCompetences } from "@/components/sections/competences";
 import { ManagingModale } from "@/components/managing_modale";
+import { SectionParcours } from "@/components/sections/parcours";
 
 export default function HomeClient({ projects: initialProjects } : { projects: Project[] }) {
     const { data: session } = useSession();
@@ -54,8 +55,10 @@ export default function HomeClient({ projects: initialProjects } : { projects: P
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#232a49] to-[#2a3760]"/>
             <SectionCompetences/>
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#2a3760] to-[#304579]"/>
+            <SectionParcours/>
+            <div className="h-[10vh] w-full bg-gradient-to-b from-[#304579] to-[#355492]"/>
             <ContactSection/>
-            <div className="h-[10vh] w-full bg-gradient-to-b from-[#304579] to-[#1a1d33]"/>
+            <div className="h-[15vh] w-full bg-gradient-to-b from-[#355492] to-[#1a1d33]"/>
             <LoginSection/>
             <FooterSection/>
         </main>

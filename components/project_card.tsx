@@ -9,6 +9,7 @@ title: string;
 description: string;
 projectUrl: string;
 imageUrl: string;
+tags: string[];
 createdAt?: string | Date;
 }
 
@@ -20,6 +21,7 @@ export const ProjectCard = ({
     description,
     projectUrl,
     imageUrl,
+    tags
 }: ProjectCardProps) => {
     const overlayControls: Controls = useAnimation();
     const descControls: Controls = useAnimation();
@@ -144,7 +146,7 @@ export const ProjectCard = ({
         });
     };
 
-    const imageClass = `absolute w-full ${isImageTall ? 'h-auto' : 'h-full'} object-cover object-top`;
+    const imageClass = `absolute w-full ${isImageTall ? 'h-auto' : 'h-full'} object-contain object-top`;
 
     return (
         <motion.div
@@ -187,6 +189,15 @@ export const ProjectCard = ({
                             initial={{ opacity: 0 }}
                         >
                             {description}
+                            {tags.length > 0 && (
+                                <div className="mt-2 flex flex-wrap gap-2">
+                                    {tags.map((tag) => (
+                                        <span key={tag} className="text-sm font-semibold px-2 py-1 rounded relative z-10 bg-white/15 backdrop-blur-md">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
                         </motion.div>
                     </div>
                 </motion.div>

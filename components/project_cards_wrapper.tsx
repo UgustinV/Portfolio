@@ -41,6 +41,7 @@ export const ProjectCardsWrapper = ({projects} : Props) => {
             description={project.description}
             projectUrl={project.projectUrl}
             imageUrl={project.imageUrl}
+            tags={project.tags || []}
             createdAt={project.createdAt}
         />
     ));

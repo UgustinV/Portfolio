@@ -7,8 +7,18 @@ interface EditFormProps {
 }
 
 export const EditForm = ({project, onUpdate} : EditFormProps) => {
-    const [formData, setFormData] = useState<Partial<Project>>({ title: project.title, description: project.description, projectUrl: project.projectUrl, imageUrl: project.imageUrl });
+    const [formData, setFormData] = useState<Partial<Project>>({ title: project.title, description: project.description, projectUrl: project.projectUrl, tags: project.tags, imageUrl: project.imageUrl });
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const [newTags, setNewTags] = useState('');
+
+    const addTag = () => {
+        const tagsToAdd = newTags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+        setFormData(prev => ({
+            ...prev,
+            tags: [...(prev.tags || []), ...tagsToAdd]
+        }));
+        setNewTags('');
+    };
 
     const saveEdit = async () => {
         let updatedFields = { ...formData };
@@ -53,7 +63,7 @@ export const EditForm = ({project, onUpdate} : EditFormProps) => {
     };
 
     return (
-        <div className="p-4 text-white">
+        <div className="p-4 text-white flex flex-col gap-2">
                 <input
                     className="w-full mb-2 p-2 rounded border"
                     type="text"
@@ -73,6 +83,29 @@ export const EditForm = ({project, onUpdate} : EditFormProps) => {
                     value={formData.projectUrl}
                     onChange={(e) => setFormData({ ...formData, projectUrl: e.target.value })}
                 />
+                <label htmlFor="edit_tags">Tags</label>
+                <div>
+                    {formData.tags?.map(tag => (
+                        <button onClick={() => setFormData({ ...formData, tags: formData.tags?.filter(t => t !== tag) })} key={tag} className="border rounded px-2 py-1 mr-2 hover:cursor-pointer hover:bg-red-600">
+                            {tag}
+                        </button>
+                    ))}
+                </div>
+                <input
+                    id="edit_tags"
+                    type="text"
+                    value={newTags}
+                    onKeyDown={e => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            addTag();
+                        }
+                    }}
+                    onChange={e => setNewTags(e.target.value)}
+                    placeholder="Ajoutez un tag (ou plusieurs, séparés par des virgules)"
+                    className="w-full border rounded"
+                />
+                <button className="bg-blue-600 px-4 py-2 rounded hover:cursor-pointer w-fit" type="button" onClick={addTag}>Ajouter un tag</button>
                 <input
                     className="mb-2 p-2 rounded border hover:cursor-pointer"
                     type="file"
@@ -85,7 +118,7 @@ export const EditForm = ({project, onUpdate} : EditFormProps) => {
                     className="bg-green-600 px-4 py-2 rounded hover:cursor-pointer"
                     onClick={saveEdit}
                     >
-                    Save
+                    Sauvegarder
                     </button>
                 </div>
             </div>

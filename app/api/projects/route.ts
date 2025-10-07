@@ -10,11 +10,11 @@ export async function POST(request: Request) {
     if (!session?.user?.isAdmin) {
         return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const { title, description, projectUrl, imageUrl } = await request.json();
+    const { title, description, projectUrl, tags, imageUrl } = await request.json();
 
     try {
         const project = await prisma.project.create({
-            data: { title, description, projectUrl, imageUrl },
+            data: { title, description, projectUrl, tags, imageUrl },
         });
         return NextResponse.json({ success: true, project }, { status: 201 });
     } catch (error : any) {
