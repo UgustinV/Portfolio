@@ -6,7 +6,6 @@ import { Project } from "@/app/generated/prisma";
 
 import { ProjectCardsWrapper } from "@/components/project_cards_wrapper";
 import { PresentationSection } from "@/components/sections/presentation";
-import { LoginSection } from "@/components/sections/login";
 import { FooterSection } from "@/components/sections/footer";
 import { ContactSection } from "@/components/sections/contact";
 import { SectionCompetences } from "@/components/sections/competences";
@@ -59,7 +58,6 @@ export default function HomeClient({ projects: initialProjects } : { projects: P
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#304579] to-[#355492]"/>
             <ContactSection/>
             <div className="h-[15vh] w-full bg-gradient-to-b from-[#355492] to-[#1a1d33]"/>
-            <LoginSection/>
             <FooterSection/>
         </main>
     );
