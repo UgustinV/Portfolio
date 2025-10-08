@@ -30,3 +30,11 @@ model User {
   isAdmin    Boolean  @default(false)
   lastActive DateTime @default(now())
 }
+
+model Competence {
+  id       String @id @unique @default(cuid())
+  name     String
+  imageUrl String
+  url      String
+  level    Int
+}

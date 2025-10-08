@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { Project } from "@/app/generated/prisma";
+import { Competence, Project } from "@/app/generated/prisma";
 
 import { ProjectCardsWrapper } from "@/components/project_cards_wrapper";
 import { PresentationSection } from "@/components/sections/presentation";
@@ -12,9 +12,10 @@ import { SectionCompetences } from "@/components/sections/competences";
 import { ManagingModale } from "@/components/managing_modale";
 import { SectionParcours } from "@/components/sections/parcours";
 
-export default function HomeClient({ projects: initialProjects } : { projects: Project[] }) {
+export default function HomeClient({ projects: initialProjects, competences: initialCompetences } : { projects: Project[], competences: Competence[] }) {
     const { data: session } = useSession();
     const [projects, setProjects] = useState(initialProjects);
+    const [competences, setCompetences] = useState(initialCompetences);
     const [modaleHidden, setModaleHidden] = useState(true);
 
     useEffect(() => {
@@ -27,13 +28,24 @@ export default function HomeClient({ projects: initialProjects } : { projects: P
         setProjects(prev => [...prev, project]);
     };
 
-
     const handleEditProject = (project : Project) => {
         setProjects(prev => prev.map(p => p.id === project.id ? project : p));
     };
 
     const handleDeleteProject = (project : Project) => {
         setProjects(prev => prev.filter(p => p.id !== project.id));
+    };
+
+    const handleAddCompetence = (competence: Competence) => {
+        setCompetences(prev => [...prev, competence]);
+    };
+
+    const handleEditCompetence = (competence: Competence) => {
+        setCompetences(prev => prev.map(p => p.id === competence.id ? competence : p));
+    };
+
+    const handleDeleteCompetence = (competence: Competence) => {
+        setCompetences(prev => prev.filter(c => c.id !== competence.id));
     };
 
     const hideModale = (hide: boolean) => {
@@ -46,13 +58,13 @@ export default function HomeClient({ projects: initialProjects } : { projects: P
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#1a1d33] to-[#232a49]"/>
             <ProjectCardsWrapper projects={projects}/>
             {!modaleHidden ? (
-                <ManagingModale projects={projects} onDeleteProject={handleDeleteProject} onEditProject={handleEditProject} onAddProject={handleAddProject} onHideModale={() => hideModale(true)}/>
+                <ManagingModale competences={competences} projects={projects} onDeleteProject={handleDeleteProject} onEditProject={handleEditProject} onAddProject={handleAddProject} onAddCompetence={handleAddCompetence} onDeleteCompetence={handleDeleteCompetence} onEditCompetence={handleEditCompetence} onHideModale={() => hideModale(true)}/>
             ) : modaleHidden && session?.user?.isAdmin ?
                 <button className="fixed top-10 right-10 py-2 px-4 border rounded-lg hover:cursor-pointer font-bold text-xl" onClick={() => hideModale(false)}>Edition</button>
             : null
             }
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#232a49] to-[#2a3760]"/>
-            <SectionCompetences/>
+            <SectionCompetences competences={competences} />
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#2a3760] to-[#304579]"/>
             <SectionParcours/>
             <div className="h-[10vh] w-full bg-gradient-to-b from-[#304579] to-[#355492]"/>

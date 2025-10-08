@@ -8,5 +8,9 @@ export default async function Home() {
     const projects = await prisma.project.findMany({
         orderBy: { createdAt: 'asc' }
     });
-    return <HomeClient projects={projects} />;
+    const competences = await prisma.competence.findMany({
+        orderBy: { level: 'desc' }
+    });
+
+    return <HomeClient projects={projects} competences={competences} />;
 }

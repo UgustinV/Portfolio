@@ -23,6 +23,11 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Competence
+ * 
+ */
+export type Competence = $Result.DefaultSelection<Prisma.$CompetencePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -161,6 +166,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.competence`: Exposes CRUD operations for the **Competence** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Competences
+    * const competences = await prisma.competence.findMany()
+    * ```
+    */
+  get competence(): Prisma.CompetenceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -219,8 +234,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.16.2
-   * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+   * Prisma Client JS version: 6.16.3
+   * Query Engine version: bb420e667c1820a8c05a38023385f6cc7ef8e83a
    */
   export type PrismaVersion = {
     client: string
@@ -602,7 +617,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Project: 'Project',
-    User: 'User'
+    User: 'User',
+    Competence: 'Competence'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -621,7 +637,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "project" | "user"
+      modelProps: "project" | "user" | "competence"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -773,6 +789,80 @@ export namespace Prisma {
           }
         }
       }
+      Competence: {
+        payload: Prisma.$CompetencePayload<ExtArgs>
+        fields: Prisma.CompetenceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CompetenceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CompetenceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>
+          }
+          findFirst: {
+            args: Prisma.CompetenceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CompetenceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>
+          }
+          findMany: {
+            args: Prisma.CompetenceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>[]
+          }
+          create: {
+            args: Prisma.CompetenceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>
+          }
+          createMany: {
+            args: Prisma.CompetenceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CompetenceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>[]
+          }
+          delete: {
+            args: Prisma.CompetenceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>
+          }
+          update: {
+            args: Prisma.CompetenceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>
+          }
+          deleteMany: {
+            args: Prisma.CompetenceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CompetenceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CompetenceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>[]
+          }
+          upsert: {
+            args: Prisma.CompetenceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompetencePayload>
+          }
+          aggregate: {
+            args: Prisma.CompetenceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCompetence>
+          }
+          groupBy: {
+            args: Prisma.CompetenceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CompetenceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CompetenceCountArgs<ExtArgs>
+            result: $Utils.Optional<CompetenceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -871,6 +961,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     project?: ProjectOmit
     user?: UserOmit
+    competence?: CompetenceOmit
   }
 
   /* Types for Logging */
@@ -2951,6 +3042,1035 @@ export namespace Prisma {
 
 
   /**
+   * Model Competence
+   */
+
+  export type AggregateCompetence = {
+    _count: CompetenceCountAggregateOutputType | null
+    _avg: CompetenceAvgAggregateOutputType | null
+    _sum: CompetenceSumAggregateOutputType | null
+    _min: CompetenceMinAggregateOutputType | null
+    _max: CompetenceMaxAggregateOutputType | null
+  }
+
+  export type CompetenceAvgAggregateOutputType = {
+    level: number | null
+  }
+
+  export type CompetenceSumAggregateOutputType = {
+    level: number | null
+  }
+
+  export type CompetenceMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    imageUrl: string | null
+    url: string | null
+    level: number | null
+  }
+
+  export type CompetenceMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    imageUrl: string | null
+    url: string | null
+    level: number | null
+  }
+
+  export type CompetenceCountAggregateOutputType = {
+    id: number
+    name: number
+    imageUrl: number
+    url: number
+    level: number
+    _all: number
+  }
+
+
+  export type CompetenceAvgAggregateInputType = {
+    level?: true
+  }
+
+  export type CompetenceSumAggregateInputType = {
+    level?: true
+  }
+
+  export type CompetenceMinAggregateInputType = {
+    id?: true
+    name?: true
+    imageUrl?: true
+    url?: true
+    level?: true
+  }
+
+  export type CompetenceMaxAggregateInputType = {
+    id?: true
+    name?: true
+    imageUrl?: true
+    url?: true
+    level?: true
+  }
+
+  export type CompetenceCountAggregateInputType = {
+    id?: true
+    name?: true
+    imageUrl?: true
+    url?: true
+    level?: true
+    _all?: true
+  }
+
+  export type CompetenceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Competence to aggregate.
+     */
+    where?: CompetenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Competences to fetch.
+     */
+    orderBy?: CompetenceOrderByWithRelationInput | CompetenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CompetenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Competences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Competences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Competences
+    **/
+    _count?: true | CompetenceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CompetenceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CompetenceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CompetenceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CompetenceMaxAggregateInputType
+  }
+
+  export type GetCompetenceAggregateType<T extends CompetenceAggregateArgs> = {
+        [P in keyof T & keyof AggregateCompetence]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCompetence[P]>
+      : GetScalarType<T[P], AggregateCompetence[P]>
+  }
+
+
+
+
+  export type CompetenceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompetenceWhereInput
+    orderBy?: CompetenceOrderByWithAggregationInput | CompetenceOrderByWithAggregationInput[]
+    by: CompetenceScalarFieldEnum[] | CompetenceScalarFieldEnum
+    having?: CompetenceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CompetenceCountAggregateInputType | true
+    _avg?: CompetenceAvgAggregateInputType
+    _sum?: CompetenceSumAggregateInputType
+    _min?: CompetenceMinAggregateInputType
+    _max?: CompetenceMaxAggregateInputType
+  }
+
+  export type CompetenceGroupByOutputType = {
+    id: string
+    name: string
+    imageUrl: string
+    url: string
+    level: number
+    _count: CompetenceCountAggregateOutputType | null
+    _avg: CompetenceAvgAggregateOutputType | null
+    _sum: CompetenceSumAggregateOutputType | null
+    _min: CompetenceMinAggregateOutputType | null
+    _max: CompetenceMaxAggregateOutputType | null
+  }
+
+  type GetCompetenceGroupByPayload<T extends CompetenceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CompetenceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CompetenceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CompetenceGroupByOutputType[P]>
+            : GetScalarType<T[P], CompetenceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CompetenceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    url?: boolean
+    level?: boolean
+  }, ExtArgs["result"]["competence"]>
+
+  export type CompetenceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    url?: boolean
+    level?: boolean
+  }, ExtArgs["result"]["competence"]>
+
+  export type CompetenceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    url?: boolean
+    level?: boolean
+  }, ExtArgs["result"]["competence"]>
+
+  export type CompetenceSelectScalar = {
+    id?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    url?: boolean
+    level?: boolean
+  }
+
+  export type CompetenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "imageUrl" | "url" | "level", ExtArgs["result"]["competence"]>
+
+  export type $CompetencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Competence"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      imageUrl: string
+      url: string
+      level: number
+    }, ExtArgs["result"]["competence"]>
+    composites: {}
+  }
+
+  type CompetenceGetPayload<S extends boolean | null | undefined | CompetenceDefaultArgs> = $Result.GetResult<Prisma.$CompetencePayload, S>
+
+  type CompetenceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CompetenceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CompetenceCountAggregateInputType | true
+    }
+
+  export interface CompetenceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Competence'], meta: { name: 'Competence' } }
+    /**
+     * Find zero or one Competence that matches the filter.
+     * @param {CompetenceFindUniqueArgs} args - Arguments to find a Competence
+     * @example
+     * // Get one Competence
+     * const competence = await prisma.competence.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CompetenceFindUniqueArgs>(args: SelectSubset<T, CompetenceFindUniqueArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Competence that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CompetenceFindUniqueOrThrowArgs} args - Arguments to find a Competence
+     * @example
+     * // Get one Competence
+     * const competence = await prisma.competence.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CompetenceFindUniqueOrThrowArgs>(args: SelectSubset<T, CompetenceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Competence that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompetenceFindFirstArgs} args - Arguments to find a Competence
+     * @example
+     * // Get one Competence
+     * const competence = await prisma.competence.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CompetenceFindFirstArgs>(args?: SelectSubset<T, CompetenceFindFirstArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Competence that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompetenceFindFirstOrThrowArgs} args - Arguments to find a Competence
+     * @example
+     * // Get one Competence
+     * const competence = await prisma.competence.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CompetenceFindFirstOrThrowArgs>(args?: SelectSubset<T, CompetenceFindFirstOrThrowArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Competences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompetenceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Competences
+     * const competences = await prisma.competence.findMany()
+     * 
+     * // Get first 10 Competences
+     * const competences = await prisma.competence.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const competenceWithIdOnly = await prisma.competence.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CompetenceFindManyArgs>(args?: SelectSubset<T, CompetenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Competence.
+     * @param {CompetenceCreateArgs} args - Arguments to create a Competence.
+     * @example
+     * // Create one Competence
+     * const Competence = await prisma.competence.create({
+     *   data: {
+     *     // ... data to create a Competence
+     *   }
+     * })
+     * 
+     */
+    create<T extends CompetenceCreateArgs>(args: SelectSubset<T, CompetenceCreateArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Competences.
+     * @param {CompetenceCreateManyArgs} args - Arguments to create many Competences.
+     * @example
+     * // Create many Competences
+     * const competence = await prisma.competence.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CompetenceCreateManyArgs>(args?: SelectSubset<T, CompetenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Competences and returns the data saved in the database.
+     * @param {CompetenceCreateManyAndReturnArgs} args - Arguments to create many Competences.
+     * @example
+     * // Create many Competences
+     * const competence = await prisma.competence.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Competences and only return the `id`
+     * const competenceWithIdOnly = await prisma.competence.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CompetenceCreateManyAndReturnArgs>(args?: SelectSubset<T, CompetenceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Competence.
+     * @param {CompetenceDeleteArgs} args - Arguments to delete one Competence.
+     * @example
+     * // Delete one Competence
+     * const Competence = await prisma.competence.delete({
+     *   where: {
+     *     // ... filter to delete one Competence
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CompetenceDeleteArgs>(args: SelectSubset<T, CompetenceDeleteArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Competence.
+     * @param {CompetenceUpdateArgs} args - Arguments to update one Competence.
+     * @example
+     * // Update one Competence
+     * const competence = await prisma.competence.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CompetenceUpdateArgs>(args: SelectSubset<T, CompetenceUpdateArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Competences.
+     * @param {CompetenceDeleteManyArgs} args - Arguments to filter Competences to delete.
+     * @example
+     * // Delete a few Competences
+     * const { count } = await prisma.competence.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CompetenceDeleteManyArgs>(args?: SelectSubset<T, CompetenceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Competences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompetenceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Competences
+     * const competence = await prisma.competence.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CompetenceUpdateManyArgs>(args: SelectSubset<T, CompetenceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Competences and returns the data updated in the database.
+     * @param {CompetenceUpdateManyAndReturnArgs} args - Arguments to update many Competences.
+     * @example
+     * // Update many Competences
+     * const competence = await prisma.competence.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Competences and only return the `id`
+     * const competenceWithIdOnly = await prisma.competence.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CompetenceUpdateManyAndReturnArgs>(args: SelectSubset<T, CompetenceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Competence.
+     * @param {CompetenceUpsertArgs} args - Arguments to update or create a Competence.
+     * @example
+     * // Update or create a Competence
+     * const competence = await prisma.competence.upsert({
+     *   create: {
+     *     // ... data to create a Competence
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Competence we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CompetenceUpsertArgs>(args: SelectSubset<T, CompetenceUpsertArgs<ExtArgs>>): Prisma__CompetenceClient<$Result.GetResult<Prisma.$CompetencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Competences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompetenceCountArgs} args - Arguments to filter Competences to count.
+     * @example
+     * // Count the number of Competences
+     * const count = await prisma.competence.count({
+     *   where: {
+     *     // ... the filter for the Competences we want to count
+     *   }
+     * })
+    **/
+    count<T extends CompetenceCountArgs>(
+      args?: Subset<T, CompetenceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CompetenceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Competence.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompetenceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CompetenceAggregateArgs>(args: Subset<T, CompetenceAggregateArgs>): Prisma.PrismaPromise<GetCompetenceAggregateType<T>>
+
+    /**
+     * Group by Competence.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompetenceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CompetenceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CompetenceGroupByArgs['orderBy'] }
+        : { orderBy?: CompetenceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CompetenceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCompetenceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Competence model
+   */
+  readonly fields: CompetenceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Competence.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CompetenceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Competence model
+   */
+  interface CompetenceFieldRefs {
+    readonly id: FieldRef<"Competence", 'String'>
+    readonly name: FieldRef<"Competence", 'String'>
+    readonly imageUrl: FieldRef<"Competence", 'String'>
+    readonly url: FieldRef<"Competence", 'String'>
+    readonly level: FieldRef<"Competence", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Competence findUnique
+   */
+  export type CompetenceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * Filter, which Competence to fetch.
+     */
+    where: CompetenceWhereUniqueInput
+  }
+
+  /**
+   * Competence findUniqueOrThrow
+   */
+  export type CompetenceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * Filter, which Competence to fetch.
+     */
+    where: CompetenceWhereUniqueInput
+  }
+
+  /**
+   * Competence findFirst
+   */
+  export type CompetenceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * Filter, which Competence to fetch.
+     */
+    where?: CompetenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Competences to fetch.
+     */
+    orderBy?: CompetenceOrderByWithRelationInput | CompetenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Competences.
+     */
+    cursor?: CompetenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Competences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Competences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Competences.
+     */
+    distinct?: CompetenceScalarFieldEnum | CompetenceScalarFieldEnum[]
+  }
+
+  /**
+   * Competence findFirstOrThrow
+   */
+  export type CompetenceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * Filter, which Competence to fetch.
+     */
+    where?: CompetenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Competences to fetch.
+     */
+    orderBy?: CompetenceOrderByWithRelationInput | CompetenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Competences.
+     */
+    cursor?: CompetenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Competences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Competences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Competences.
+     */
+    distinct?: CompetenceScalarFieldEnum | CompetenceScalarFieldEnum[]
+  }
+
+  /**
+   * Competence findMany
+   */
+  export type CompetenceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * Filter, which Competences to fetch.
+     */
+    where?: CompetenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Competences to fetch.
+     */
+    orderBy?: CompetenceOrderByWithRelationInput | CompetenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Competences.
+     */
+    cursor?: CompetenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Competences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Competences.
+     */
+    skip?: number
+    distinct?: CompetenceScalarFieldEnum | CompetenceScalarFieldEnum[]
+  }
+
+  /**
+   * Competence create
+   */
+  export type CompetenceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Competence.
+     */
+    data: XOR<CompetenceCreateInput, CompetenceUncheckedCreateInput>
+  }
+
+  /**
+   * Competence createMany
+   */
+  export type CompetenceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Competences.
+     */
+    data: CompetenceCreateManyInput | CompetenceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Competence createManyAndReturn
+   */
+  export type CompetenceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * The data used to create many Competences.
+     */
+    data: CompetenceCreateManyInput | CompetenceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Competence update
+   */
+  export type CompetenceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Competence.
+     */
+    data: XOR<CompetenceUpdateInput, CompetenceUncheckedUpdateInput>
+    /**
+     * Choose, which Competence to update.
+     */
+    where: CompetenceWhereUniqueInput
+  }
+
+  /**
+   * Competence updateMany
+   */
+  export type CompetenceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Competences.
+     */
+    data: XOR<CompetenceUpdateManyMutationInput, CompetenceUncheckedUpdateManyInput>
+    /**
+     * Filter which Competences to update
+     */
+    where?: CompetenceWhereInput
+    /**
+     * Limit how many Competences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Competence updateManyAndReturn
+   */
+  export type CompetenceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * The data used to update Competences.
+     */
+    data: XOR<CompetenceUpdateManyMutationInput, CompetenceUncheckedUpdateManyInput>
+    /**
+     * Filter which Competences to update
+     */
+    where?: CompetenceWhereInput
+    /**
+     * Limit how many Competences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Competence upsert
+   */
+  export type CompetenceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Competence to update in case it exists.
+     */
+    where: CompetenceWhereUniqueInput
+    /**
+     * In case the Competence found by the `where` argument doesn't exist, create a new Competence with this data.
+     */
+    create: XOR<CompetenceCreateInput, CompetenceUncheckedCreateInput>
+    /**
+     * In case the Competence was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CompetenceUpdateInput, CompetenceUncheckedUpdateInput>
+  }
+
+  /**
+   * Competence delete
+   */
+  export type CompetenceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+    /**
+     * Filter which Competence to delete.
+     */
+    where: CompetenceWhereUniqueInput
+  }
+
+  /**
+   * Competence deleteMany
+   */
+  export type CompetenceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Competences to delete
+     */
+    where?: CompetenceWhereInput
+    /**
+     * Limit how many Competences to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Competence without action
+   */
+  export type CompetenceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Competence
+     */
+    select?: CompetenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Competence
+     */
+    omit?: CompetenceOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -2985,6 +4105,17 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const CompetenceScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    imageUrl: 'imageUrl',
+    url: 'url',
+    level: 'level'
+  };
+
+  export type CompetenceScalarFieldEnum = (typeof CompetenceScalarFieldEnum)[keyof typeof CompetenceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3054,6 +4185,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -3167,6 +4312,60 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     isAdmin?: BoolWithAggregatesFilter<"User"> | boolean
     lastActive?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type CompetenceWhereInput = {
+    AND?: CompetenceWhereInput | CompetenceWhereInput[]
+    OR?: CompetenceWhereInput[]
+    NOT?: CompetenceWhereInput | CompetenceWhereInput[]
+    id?: StringFilter<"Competence"> | string
+    name?: StringFilter<"Competence"> | string
+    imageUrl?: StringFilter<"Competence"> | string
+    url?: StringFilter<"Competence"> | string
+    level?: IntFilter<"Competence"> | number
+  }
+
+  export type CompetenceOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    url?: SortOrder
+    level?: SortOrder
+  }
+
+  export type CompetenceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CompetenceWhereInput | CompetenceWhereInput[]
+    OR?: CompetenceWhereInput[]
+    NOT?: CompetenceWhereInput | CompetenceWhereInput[]
+    name?: StringFilter<"Competence"> | string
+    imageUrl?: StringFilter<"Competence"> | string
+    url?: StringFilter<"Competence"> | string
+    level?: IntFilter<"Competence"> | number
+  }, "id" | "id">
+
+  export type CompetenceOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    url?: SortOrder
+    level?: SortOrder
+    _count?: CompetenceCountOrderByAggregateInput
+    _avg?: CompetenceAvgOrderByAggregateInput
+    _max?: CompetenceMaxOrderByAggregateInput
+    _min?: CompetenceMinOrderByAggregateInput
+    _sum?: CompetenceSumOrderByAggregateInput
+  }
+
+  export type CompetenceScalarWhereWithAggregatesInput = {
+    AND?: CompetenceScalarWhereWithAggregatesInput | CompetenceScalarWhereWithAggregatesInput[]
+    OR?: CompetenceScalarWhereWithAggregatesInput[]
+    NOT?: CompetenceScalarWhereWithAggregatesInput | CompetenceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Competence"> | string
+    name?: StringWithAggregatesFilter<"Competence"> | string
+    imageUrl?: StringWithAggregatesFilter<"Competence"> | string
+    url?: StringWithAggregatesFilter<"Competence"> | string
+    level?: IntWithAggregatesFilter<"Competence"> | number
   }
 
   export type ProjectCreateInput = {
@@ -3286,6 +4485,62 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
     lastActive?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompetenceCreateInput = {
+    id?: string
+    name: string
+    imageUrl: string
+    url: string
+    level: number
+  }
+
+  export type CompetenceUncheckedCreateInput = {
+    id?: string
+    name: string
+    imageUrl: string
+    url: string
+    level: number
+  }
+
+  export type CompetenceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    level?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompetenceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    level?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompetenceCreateManyInput = {
+    id?: string
+    name: string
+    imageUrl: string
+    url: string
+    level: number
+  }
+
+  export type CompetenceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    level?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompetenceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    level?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3416,6 +4671,65 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type CompetenceCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    url?: SortOrder
+    level?: SortOrder
+  }
+
+  export type CompetenceAvgOrderByAggregateInput = {
+    level?: SortOrder
+  }
+
+  export type CompetenceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    url?: SortOrder
+    level?: SortOrder
+  }
+
+  export type CompetenceMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    url?: SortOrder
+    level?: SortOrder
+  }
+
+  export type CompetenceSumOrderByAggregateInput = {
+    level?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type ProjectCreatetagsInput = {
     set: string[]
   }
@@ -3435,6 +4749,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3515,6 +4837,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
 
