@@ -95,7 +95,7 @@ export const ManagingModale = ({
                 {isEditing && editProject ? (
                     <>
                         <button 
-                            className="mb-4 bg-gray-600 text-white px-4 py-2 rounded hover:cursor-pointer w-fit" 
+                            className="mb-4 bg-gray-600 px-4 py-2 rounded hover:cursor-pointer w-fit" 
                             onClick={() => setIsEditing(false)}
                         >
                             Fermer le mode édition

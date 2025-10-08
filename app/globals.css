@@ -5,19 +5,18 @@
   --foreground: #171717;
 }
 
-@theme inline {
+:root.dark {
+  --background: #1a1d33;
+  --foreground: #ededed;
+}
+
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1a1d33;
-    --foreground: #ededed;
-  }
-}
 
 @supports not (backdrop-filter: blur(8px)) {
   .backdrop-blur-md {

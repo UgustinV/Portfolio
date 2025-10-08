@@ -53,24 +53,24 @@ export default function HomeClient({ projects: initialProjects, competences: ini
     };
 
     return (
-        <main>
+        <main className="text-black dark:text-white">
             <PresentationSection/>
-            <div className="h-[10vh] w-full bg-gradient-to-b from-[#1a1d33] to-[#232a49]"/>
+            <div className="h-[10vh] w-full bg-gradient-to-b from-[#b4cff8] to-[#a4c2f4] dark:from-[#1a1d33] dark:to-[#232a49]"/>
             <ProjectCardsWrapper projects={projects}/>
+            <div className="h-[10vh] w-full bg-gradient-to-b from-[#a4c2f4] to-[#94b5ef] dark:from-[#232a49] dark:to-[#2a3760]"/>
+            <SectionCompetences competences={competences} />
+            <div className="h-[10vh] w-full bg-gradient-to-b from-[#94b5ef] to-[#84a8eb] dark:from-[#2a3760] dark:to-[#304579]"/>
+            <SectionParcours/>
+            <div className="h-[10vh] w-full bg-gradient-to-b from-[#84a8eb] to-[#759be6] dark:from-[#304579] dark:to-[#355492]"/>
+            <ContactSection/>
+            <div className="h-[15vh] w-full bg-gradient-to-b from-[#759be6] to-[#a4c2f4] dark:from-[#355492] dark:to-[#1a1d33]"/>
+            <FooterSection/>
             {!modaleHidden ? (
                 <ManagingModale competences={competences} projects={projects} onDeleteProject={handleDeleteProject} onEditProject={handleEditProject} onAddProject={handleAddProject} onAddCompetence={handleAddCompetence} onDeleteCompetence={handleDeleteCompetence} onEditCompetence={handleEditCompetence} onHideModale={() => hideModale(true)}/>
             ) : modaleHidden && session?.user?.isAdmin ?
                 <button className="fixed top-10 right-10 py-2 px-4 border rounded-lg hover:cursor-pointer font-bold text-xl" onClick={() => hideModale(false)}>Edition</button>
             : null
             }
-            <div className="h-[10vh] w-full bg-gradient-to-b from-[#232a49] to-[#2a3760]"/>
-            <SectionCompetences competences={competences} />
-            <div className="h-[10vh] w-full bg-gradient-to-b from-[#2a3760] to-[#304579]"/>
-            <SectionParcours/>
-            <div className="h-[10vh] w-full bg-gradient-to-b from-[#304579] to-[#355492]"/>
-            <ContactSection/>
-            <div className="h-[15vh] w-full bg-gradient-to-b from-[#355492] to-[#1a1d33]"/>
-            <FooterSection/>
         </main>
     );
 }

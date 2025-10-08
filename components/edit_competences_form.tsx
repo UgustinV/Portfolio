@@ -53,7 +53,7 @@ export const EditCompetencesForm = ({competence, onUpdate} : EditCompetencesForm
     };
 
     return (
-        <div className="p-4 text-white flex flex-col gap-2">
+        <div className="p-4 flex flex-col gap-2">
                 <input
                     className="w-full mb-2 p-2 rounded border"
                     type="text"

@@ -11,7 +11,7 @@ export const PresentationSection = () => {
         age = year - 2001;
     }
     return (
-        <section className="flex flex-col h-[100vh] items-center justify-center">
+        <section className="bg-[#b4cff8] dark:bg-[#1a1d33] flex flex-col h-[100vh] items-center justify-center">
             <motion.h1
                 initial={{ opacity: 0, y: "-100vw" }}
                 animate={{ opacity: 1, y: 0 }}
@@ -44,7 +44,16 @@ export const PresentationSection = () => {
             >
                 Naviguez sur le site pour en apprendre plus sur mes projets et mon parcours.
             </motion.p>
-            <img className="w-20 h-20 mt-[25vh] animate-bounce" src="/white_arrow.svg" alt="Arrow" />
+            <img 
+                className="w-20 h-20 mt-[25vh] animate-bounce dark:block hidden" 
+                src="/white_arrow.svg" 
+                alt="Arrow"
+            />
+            <img 
+                className="w-20 h-20 mt-[25vh] animate-bounce block dark:hidden" 
+                src="/black_arrow.svg" 
+                alt="Arrow"
+            />
         </section>
     )
 }

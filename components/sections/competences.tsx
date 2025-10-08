@@ -13,9 +13,29 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
         renderMode: "precision",
         drag: false,
         slides: {
-            perView: 4,
+            perView: 5,
             spacing: 15,
         },
+        breakpoints: {
+            "(max-width: 1600px)": {
+              slides: {
+                perView: 4,
+                spacing: 12,
+              },
+            },
+            "(max-width: 1024px)": {
+            slides: {
+                perView: 2,
+                spacing: 12,
+            },
+            },
+            "(max-width: 550px)": {
+            slides: {
+                perView: 1,
+                spacing: 8,
+            },
+            },
+      },
         created(s) {
             s.moveToIdx(1, true, animation)
         },
@@ -27,8 +47,8 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
         },
     })
     return (
-        <section className="bg-[#2a3760] min-h-screen py-20 flex flex-col items-center justify-center">
-            <h2 className="text-4xl text-white text-center mb-12">
+        <section className="bg-[#94b5ef] dark:bg-[#2a3760] min-h-screen py-20 flex flex-col items-center justify-center">
+            <h2 className="text-4xl text-center mb-12">
                 Mes Compétences
             </h2>
             <div ref={sliderRef} className="keen-slider">
@@ -37,10 +57,10 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
                             <a href={competence.url} target="_blank" rel="noopener noreferrer">
                                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 h-80 flex flex-col items-center justify-center text-center hover:bg-white/20 transition-all duration-300 mx-2 gap-5">
                                     <img className="w-1/3" src={competence.imageUrl} alt={competence.name} />
-                                    <h3 className="text-xl font-bold text-white mb-2">
+                                    <h3 className="text-xl font-bold mb-2">
                                         {competence.name}
                                     </h3>
-                                    <div className="text-sm text-blue-300 mb-3 px-3 py-1 bg-blue-500/20 rounded-full">
+                                    <div className="text-sm font-bold text-blue-900 dark:text-blue-300 mb-3 px-3 py-1 bg-blue-200 dark:bg-blue-500/20 rounded-full">
                                         {competence.level == 1 ? "Débutant" : competence.level == 2 ? "Intermédiaire" : competence.level == 3 ? "Avancé" : "Expert"}
                                     </div>
                                 </div>
