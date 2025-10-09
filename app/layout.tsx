@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "@/components/providers";
 import { StructuredData } from "@/components/structured-data";
+import { ThemeModeScript } from "flowbite-react";
 import { VT323 } from "next/font/google";
 import "./globals.css";
 
@@ -89,6 +90,7 @@ export default function RootLayout({
     <html lang="fr">
         <head>
             <StructuredData />
+            <ThemeModeScript />
         </head>
         <body className={`${vt323.variable} antialiased`}>
             <Providers>
