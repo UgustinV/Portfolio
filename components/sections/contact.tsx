@@ -57,7 +57,7 @@ export const ContactSection = () => {
     }
 
     return (
-        <section className="flex flex-col h-screen w-full justify-center items-center bg-[#759be6] dark:bg-[#355492] relative">
+        <section id='contact' className="flex flex-col h-screen w-full justify-center items-center bg-[#759be6] dark:bg-[#355492] relative">
             <h2 className="lg:absolute lg:top-[3vh] lg:left-[3vh] text-5xl font-bold mb-4">Contactez-moi</h2>
             {success && (
                 <div className="opacity-0 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded absolute top-[5vh] animate-fade-in-out">

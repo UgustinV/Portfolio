@@ -24,9 +24,7 @@ export const SectionParcours = () => {
     }, []);
 
     return (
-        <section 
-            className={`bg-[#84a8eb] dark:bg-[#304579] ${isLargeScreen ? 'h-[200vw]' : 'min-h-screen py-20'}`} 
-            ref={targetRef}
+        <section id="parcours" className={`bg-[#84a8eb] dark:bg-[#304579] ${isLargeScreen ? 'h-[200vw]' : 'min-h-screen py-20'}`} ref={targetRef}
         >
             {isLargeScreen ? (
                 <div className="sticky top-0 h-screen flex flex-col justify-center">
