@@ -148,12 +148,13 @@ export const ProjectCard = ({
         >
         <div ref={containerRef} className="relative h-[50vh] lg:h-[80vh]">
             <motion.a
-                className="absolute inset-0 block text-white overflow-hidden"
+                className="absolute inset-0 block text-white overflow-hidden focus:border-4 focus:border-blue-400"
                 href={projectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onHoverStart={handleHoverStart}
                 onHoverEnd={handleHoverEnd}
+                aria-label={`Voir le projet ${title}`}
             >
                 <motion.img
                     ref={imageRef}

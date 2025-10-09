@@ -8,7 +8,9 @@ export async function middleware(request: NextRequest) {
     if (path.startsWith("/api/auth/") || !path.startsWith("/api/")) {
         return NextResponse.next();
     }
-
+    if(path === "/api/contact") {
+        return NextResponse.next();
+    }
     if (path.startsWith("/api/")) {
         const token = await getToken({ 
             req: request, 
