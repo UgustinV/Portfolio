@@ -29,10 +29,8 @@ export const SectionParcours = () => {
             ref={targetRef}
         >
             {isLargeScreen ? (
-                <div className="sticky top-0 h-screen flex flex-col">
-                    <div className="h-[35vh] flex justify-start">
-                        <h2 className="pl-[3vh] top-0 text-5xl font-bold">Mon Parcours</h2>
-                    </div>
+                <div className="sticky top-0 h-screen flex flex-col justify-center">
+                    <h2 className="absolute left-[3vh] top-[3vh] text-5xl font-bold">Mon Parcours</h2>
                     <div className="flex items-center justify-start overflow-hidden pl-[6vh] pt-[3vh]">
                         <motion.div className="flex gap-8 w-[200vw]" style={{ x }}>
                             <Timeline horizontal className="flex w-[200vw] pr-[6vh]">
@@ -44,7 +42,7 @@ export const SectionParcours = () => {
             ) : (
                 <div className="px-6">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold">Mon Parcours</h2>
+                        <h2 className="text-5xl font-bold">Mon Parcours</h2>
                     </div>
                     <div className="flex justify-center">
                         <Timeline>

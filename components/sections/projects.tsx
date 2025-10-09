@@ -47,9 +47,9 @@ export const ProjectsSection = ({projects} : Props) => {
     ));
     return(
         <section className="bg-[#a4c2f4] dark:bg-[#232a49] h-[600vh]" ref={targetRef}>
-            <div className="sticky top-0 h-screen flex flex-col">
-                <div className="h-[25vh] lg:h-[10vh] flex items-center justify-center lg:justify-start">
-                    <h2 className="pl-[3vh] text-5xl font-bold">Mes Projets</h2>
+            <div className="sticky top-0 h-screen flex flex-col justify-center">
+                <div className="absolute left-0 top-0 w-full h-full flex justify-center">
+                    <h2 className="absolute lg:left-[3vh] top-[3vh] text-5xl font-bold">Mes Projets</h2>
                 </div>
                 <div className="flex items-center justify-start overflow-hidden rounded-2xl">
                     <motion.div

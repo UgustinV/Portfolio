@@ -47,8 +47,8 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
         },
     })
     return (
-        <section className="bg-[#94b5ef] dark:bg-[#2a3760] min-h-screen py-20 flex flex-col items-center justify-center">
-            <h2 className="text-4xl text-center mb-12">
+        <section className="bg-[#94b5ef] dark:bg-[#2a3760] min-h-screen py-20 flex flex-col items-center justify-center relative">
+            <h2 className="absolute top-[3vh] lg:left-[3vh] text-5xl font-bold">
                 Mes Compétences
             </h2>
             <div ref={sliderRef} className="keen-slider">
