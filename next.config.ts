@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
+import withFlowbiteReact from "flowbite-react/plugin/nextjs";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
 };
 
-export default nextConfig;
+export default withFlowbiteReact(nextConfig);

@@ -11,7 +11,7 @@ type Props = {
 
 const gridRepeat = "1fr "
 
-export const ProjectCardsWrapper = ({projects} : Props) => {
+export const ProjectsSection = ({projects} : Props) => {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: targetRef });
 
