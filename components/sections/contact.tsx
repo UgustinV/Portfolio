@@ -70,7 +70,7 @@ export const ContactSection = () => {
                 </div>
             )}
             <p className="text-2xl text-center max-w-4xl">Vous pouvez me contacter via le formulaire ci-dessous ou par email à <a className="hover:underline" href="mailto:augustin.viard0@gmail.com">augustin.viard0@gmail.com</a>.</p>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-10 w-[60vw] mt-12 lg:mt-0">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10 w-[95vw] lg:w-[60vw] mt-12 lg:mt-0">
                 <div>
                     <label htmlFor="name" className="block text-3xl mb-2">Votre Nom :</label>
                     <input 
@@ -79,7 +79,7 @@ export const ContactSection = () => {
                         name="name" 
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full p-2 border border-gray-300 rounded text-gray-900" 
+                        className="w-full p-2 border text-2xl border-white rounded text-black dark:text-white" 
                         required 
                         disabled={isSubmitting}
                     />
@@ -92,7 +92,7 @@ export const ContactSection = () => {
                         name="email" 
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full p-2 border border-gray-300 rounded text-gray-900" 
+                        className="w-full p-2 border text-2xl border-white rounded text-black dark:text-white" 
                         required 
                         disabled={isSubmitting}
                     />
@@ -105,14 +105,14 @@ export const ContactSection = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={5}
-                        className="w-full p-2 border border-gray-300 rounded text-gray-900" 
+                        className="w-full p-2 border text-2xl border-white rounded text-black dark:text-white" 
                         required 
                         disabled={isSubmitting}
                     />
                 </div>
                 <button 
                     type="submit" 
-                    className="bg-[#1a1d33] text-white px-4 py-2 rounded hover:bg-[#2a2d43] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="bg-[#1a1d33] text-white text-2xl px-4 py-2 rounded hover:bg-[#2a2d43] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
