@@ -17,6 +17,23 @@
   --color-foreground: var(--foreground);
 }
 
+@theme {
+    --animate-fade-in-out: fade-in-out 8s ease-in-out;
+    @keyframes fade-in-out {
+        0% {
+            opacity: 0;
+        }
+        25% {
+            opacity: 1;
+        }
+        75% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}
 
 @supports not (backdrop-filter: blur(8px)) {
   .backdrop-blur-md {

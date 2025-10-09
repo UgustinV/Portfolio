@@ -7,7 +7,6 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, message } = await request.json();
 
-    // Validate required fields
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Tous les champs sont requis' },
@@ -15,7 +14,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'Contact Form <contact@augustinviard.dev>',
       to: ['augustin.viard0@gmail.com'],

@@ -9,7 +9,8 @@ export const ContactSection = () => {
         message: ''
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+    const [success, setSuccess] = useState(false)
+    const [error, setError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,7 +24,6 @@ export const ContactSection = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
-        setSubmitStatus('idle')
         setErrorMessage('')
 
         try {
@@ -38,16 +38,19 @@ export const ContactSection = () => {
             const result = await response.json()
 
             if (response.ok) {
-                setSubmitStatus('success')
-                setFormData({ name: '', email: '', message: '' }) // Reset form
+                setFormData({ name: '', email: '', message: '' })
+                setSuccess(true)
+                setTimeout(() => setSuccess(false), 8000);
             } else {
-                setSubmitStatus('error')
                 setErrorMessage(result.error || 'Une erreur est survenue')
+                setError(true)
+                setTimeout(() => setError(false), 8000);
             }
         } catch (error) {
             console.error('Erreur lors de l\'envoi:', error)
-            setSubmitStatus('error')
             setErrorMessage('Erreur de connexion. Veuillez réessayer.')
+            setError(true)
+            setTimeout(() => setError(false), 8000);
         } finally {
             setIsSubmitting(false)
         }
@@ -56,20 +59,17 @@ export const ContactSection = () => {
     return (
         <section className="flex flex-col h-screen w-screen justify-center items-center p-8 bg-[#759be6] dark:bg-[#355492] relative">
             <h2 className="lg:absolute lg:top-[3vh] lg:left-[3vh] text-5xl font-bold mb-4">Contactez-moi</h2>
-            <p className="text-2xl text-center max-w-4xl">Vous pouvez me contacter via le formulaire ci-dessous ou par email à <a className="hover:underline" href="mailto:augustin.viard0@gmail.com">augustin.viard0@gmail.com</a>.</p>
-            
-            {submitStatus === 'success' && (
-                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 mt-4">
+            {success && (
+                <div className="opacity-0 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded absolute top-[5vh] animate-fade-in-out">
                     Merci ! Votre message a été envoyé avec succès. Je vous répondrai rapidement.
                 </div>
             )}
-            
-            {submitStatus === 'error' && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 mt-4">
+            {error && (
+                <div className="opacity-0 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 mt-4 animate-fade-in-out">
                     {errorMessage}
                 </div>
             )}
-            
+            <p className="text-2xl text-center max-w-4xl">Vous pouvez me contacter via le formulaire ci-dessous ou par email à <a className="hover:underline" href="mailto:augustin.viard0@gmail.com">augustin.viard0@gmail.com</a>.</p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-10 w-[60vw] mt-12 lg:mt-0">
                 <div>
                     <label htmlFor="name" className="block text-3xl mb-2">Votre Nom :</label>
