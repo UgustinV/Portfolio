@@ -1,5 +1,16 @@
-// lib/api.ts
+import { signOut } from "next-auth/react";
 import { Project, Competence } from "@/app/generated/prisma";
+
+export const deleteAccount = async (): Promise<boolean> => {
+    const res = await fetch("/api/deleteAccount", {
+        method: "DELETE",
+    });
+    if (res.ok) {
+        signOut();
+        return res.ok;
+    }
+    return false;
+};
 
 export const projectApi = {
 async delete(id: string): Promise<boolean> {
