@@ -6,6 +6,7 @@ import "keen-slider/keen-slider.min.css"
 import { Competence } from "@/app/generated/prisma"
 
 const animation = { duration: 15000, easing: (t: number) => t }
+const singleSlideAnimation = { duration: 3000, easing: (t: number) => t }
 
 export const SectionCompetences = ({ competences } : { competences: Competence[] }) => {
     const [sliderRef] = useKeenSlider<HTMLDivElement>({
@@ -39,11 +40,8 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
         created(s) {
             s.moveToIdx(5, true, animation)
         },
-        updated(s) {
-            s.moveToIdx(s.track.details.abs + 5, true, animation)
-        },
         animationEnded(s) {
-            s.moveToIdx(s.track.details.abs + 5, true, animation)
+            s.moveToIdx(s.track.details.abs + 1, true, singleSlideAnimation)
         },
     })
     return (
