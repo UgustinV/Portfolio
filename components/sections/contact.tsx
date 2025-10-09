@@ -112,7 +112,7 @@ export const ContactSection = () => {
                 </div>
                 <button 
                     type="submit" 
-                    className="bg-[#1a1d33] text-white text-2xl px-4 py-2 rounded hover:bg-[#2a2d43] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="bg-[#b4cff8] dark:bg-[#1a1d33] text-black dark:text-white text-2xl px-4 py-2 rounded hover:bg-[#a4c2f4] dark:hover:bg-[#232a49] disabled:opacity-50 hover:cursor-pointer disabled:cursor-not-allowed transition-colors"
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
