@@ -169,9 +169,9 @@ export const ProjectCard = ({
                     animate={overlayControls}
                 >
                     <div className="relative">
-                        <h2 ref={titleRef} className="text-2xl md:text-4xl lg:text-5xl leading-tight mb-4">
+                        <h3 ref={titleRef} className="text-2xl md:text-4xl lg:text-5xl leading-tight mb-4">
                             {title}
-                        </h2>
+                        </h3>
                         <motion.div
                             ref={descRef}
                             className="text-sm md:text-xl lg:text-2xl"

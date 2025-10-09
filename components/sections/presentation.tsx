@@ -47,12 +47,12 @@ export const PresentationSection = () => {
             <img 
                 className="w-20 lg:w-40 mt-[25vh] lg:mt-[20vh] animate-bounce dark:block hidden" 
                 src="/white_arrow.svg" 
-                alt="Arrow"
+                alt="Flèche blanche pointant vers le bas"
             />
             <img 
                 className="w-20 lg:w-40 mt-[25vh] lg:mt-[20vh] animate-bounce block dark:hidden" 
                 src="/black_arrow.svg" 
-                alt="Arrow"
+                alt="Flèche noire pointant vers le bas"
             />
         </section>
     )

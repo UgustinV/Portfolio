@@ -56,7 +56,7 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
                         <div key={competence.id} className="keen-slider__slide">
                             <a href={competence.url} target="_blank" rel="noopener noreferrer">
                                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 h-80 flex flex-col items-center justify-center text-center hover:bg-white/20 transition-all duration-300 mx-2 gap-5">
-                                    <img className="w-1/3" src={competence.imageUrl} alt={competence.name} />
+                                    <img className="w-1/3" src={competence.imageUrl} alt={`Logo de ${competence.name}`} />
                                     <h3 className="text-4xl font-bold mb-2">
                                         {competence.name}
                                     </h3>
