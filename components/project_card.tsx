@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { useTouchDevice } from "@/hooks/useTouchDevice";
 
 interface ProjectCardProps {
 id: string;
@@ -36,18 +37,7 @@ export const ProjectCard = ({
     const [titleHeight, setTitleHeight] = useState(0);
     const [descHeight, setDescHeight] = useState(0);
     const [isImageTall, setIsImageTall] = useState(true);
-    const [isMobile, setIsMobile] = useState(false)
-
-    useEffect(() => {
-        const checkMobile = () => {
-            const mobile = window.innerWidth < 768;
-            setIsMobile(mobile);
-        };
-        
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
+    const isTouchDevice = useTouchDevice();
 
     useEffect(() => {
         const setupImageAnimation = async () => {
@@ -102,7 +92,7 @@ export const ProjectCard = ({
         setTitleHeight(titleHeight);
         setDescHeight(descHeight);
 
-        if (isMobile) {
+        if (isTouchDevice) {
             const newHeight = titleHeight + descHeight + 48;
             overlayControls.set({ height: newHeight });
             descControls.set({ opacity: 1 });
@@ -118,10 +108,10 @@ export const ProjectCard = ({
     return () => {
         window.removeEventListener("resize", measure);
     };
-}, [overlayControls, descControls, isMobile]);
+}, [overlayControls, descControls, isTouchDevice]);
 
     const handleHoverStart = () => {
-        if(isMobile) return;
+        if(isTouchDevice) return;
         overlayControls.start({
             height: titleHeight + descHeight + 48,
             transition: { duration: 0.3, ease: "easeOut" },
@@ -134,7 +124,7 @@ export const ProjectCard = ({
     };
 
     const handleHoverEnd = () => {
-        if(isMobile) return;
+        if(isTouchDevice) return;
         overlayControls.start({
             height: titleHeight + 32,
             transition: { duration: 0.3, ease: "easeOut" },
@@ -179,12 +169,12 @@ export const ProjectCard = ({
                     animate={overlayControls}
                 >
                     <div className="relative">
-                        <h2 ref={titleRef} className="text-2xl lg:text-5xl leading-tight mb-4">
+                        <h2 ref={titleRef} className="text-2xl md:text-4xl lg:text-5xl leading-tight mb-4">
                             {title}
                         </h2>
                         <motion.div
                             ref={descRef}
-                            className="text-sm lg:text-2xl"
+                            className="text-sm md:text-xl lg:text-2xl"
                             animate={descControls}
                             initial={{ opacity: 0 }}
                         >
@@ -192,7 +182,7 @@ export const ProjectCard = ({
                             {tags.length > 0 && (
                                 <div className="mt-2 flex flex-wrap gap-2">
                                     {tags.map((tag) => (
-                                        <span key={tag} className="text-[10px] lg:text-sm font-semibold px-1 py-0.5 lg:px-2 lg:py-1 rounded relative z-10 bg-white/15 backdrop-blur-md">
+                                        <span key={tag} className="text-xs md:text-sm lg:text-lg font-semibold px-1 py-0.5 lg:px-2 lg:py-1 rounded relative z-10 bg-white/15">
                                             {tag}
                                         </span>
                                     ))}
