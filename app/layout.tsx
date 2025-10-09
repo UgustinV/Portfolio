@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "@/components/providers";
+import { StructuredData } from "@/components/structured-data";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Augustin Viard - Développeur Web",
-  description: "Bienvenue sur le portfolio d'Augustin Viard, développeur web passionné. Découvrez mes projets, compétences et expériences dans le développement full-stack, ainsi que ma passion pour la création d'applications innovantes et performantes. Explorez mon univers numérique et contactez-moi pour collaborer sur vos futurs projets.",
+  description: "Découvrez le portfolio d'Augustin Viard, développeur web spécialisé React/Next.js. Projets, compétences et contact pour vos projets web.",
     icons: {
         icon: "/favicon.ico",
         shortcut: "/favicon-16x16.png",
@@ -27,12 +28,12 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: "Augustin Viard - Développeur Web",
-        description: "Bienvenue sur le portfolio d'Augustin Viard, développeur web passionné. Découvrez mes projets, compétences et expériences dans le développement full-stack, ainsi que ma passion pour la création d'applications innovantes et performantes. Explorez mon univers numérique et contactez-moi pour collaborer sur vos futurs projets.",
+        description: "Découvrez le portfolio d'Augustin Viard, développeur web spécialisé React/Next.js. Projets, compétences et contact pour vos projets web.",
         url: "https://augustinviard.dev",
         siteName: "Augustin Viard - Développeur Web",
         images: [
             {
-                url: "/og-image.png",
+                url: "https://augustinviard.dev/og-image.png",
                 width: 800,
                 height: 800,
                 alt: "Augustin Viard - Développeur Web",
@@ -44,8 +45,8 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Augustin Viard - Développeur Web",
-        description: "Bienvenue sur le portfolio d'Augustin Viard, développeur web passionné. Découvrez mes projets, compétences et expériences dans le développement full-stack, ainsi que ma passion pour la création d'applications innovantes et performantes. Explorez mon univers numérique et contactez-moi pour collaborer sur vos futurs projets.",
-        images: ["/og-image.png"],
+        description: "Découvrez le portfolio d'Augustin Viard, développeur web spécialisé React/Next.js. Projets, compétences et contact pour vos projets web.",
+        images: ["https://augustinviard.dev/og-image.png"],
         creator: "@AugustinViard",
     },
         appleWebApp: {
@@ -55,6 +56,27 @@ export const metadata: Metadata = {
     },
     category: "Technology",
     classification: "Portfolio",
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+    keywords: [
+        "Augustin Viard",
+        "développeur web",
+        "développeur full-stack",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "portfolio",
+        "développeur freelance"
+    ],
 };
 
 export const viewport = {
@@ -69,11 +91,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>
-            {children}
-        </Providers>
-      </body>
+        <StructuredData />
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <Providers>
+                {children}
+            </Providers>
+        </body>
     </html>
   );
 }
