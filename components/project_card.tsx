@@ -46,10 +46,12 @@ export const ProjectCard = ({
             if (!img || !container) return;
 
             if (!img.complete) {
-                    await new Promise(resolve => {
+                await new Promise(resolve => {
                     img.onload = resolve;
                 });
             }
+
+            imageControls.stop();
 
             const scrollAmount = Math.max(0, img.offsetHeight - container.offsetHeight);
 
@@ -67,13 +69,22 @@ export const ProjectCard = ({
                         repeat: Infinity
                     }
                 });
-            }
-            else {
+            } else {
                 setIsImageTall(false);
             }
         };
 
         setupImageAnimation();
+
+        const handleResize = () => {
+            setupImageAnimation();
+        };
+
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, [imageControls]);
 
     useEffect(() => {

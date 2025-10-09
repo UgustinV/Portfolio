@@ -1,4 +1,7 @@
+"use client"
+
 import * as React from "react"
+import { useEffect } from "react"
 
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
@@ -9,7 +12,7 @@ const animation = { duration: 15000, easing: (t: number) => t }
 const singleSlideAnimation = { duration: 3000, easing: (t: number) => t }
 
 export const SectionCompetences = ({ competences } : { competences: Competence[] }) => {
-    const [sliderRef] = useKeenSlider<HTMLDivElement>({
+    const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         loop: true,
         renderMode: "precision",
         drag: false,
@@ -44,6 +47,25 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
             s.moveToIdx(s.track.details.abs + 1, true, singleSlideAnimation)
         },
     })
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (instanceRef.current) {
+                // Stop current animation and restart
+                instanceRef.current.update();
+                // Small delay to ensure update is complete
+                setTimeout(() => {
+                    if (instanceRef.current) {
+                        instanceRef.current.moveToIdx(5, true, animation);
+                    }
+                }, 100);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [instanceRef]);
+
     return (
         <section className="bg-[#94b5ef] dark:bg-[#2a3760] min-h-screen py-20 flex flex-col items-center justify-center relative">
             <h2 className="absolute top-[3vh] lg:left-[3vh] text-5xl font-bold">
