@@ -60,11 +60,12 @@ export const ProjectCard = ({
                 const calculatedDuration = scrollAmount / baseSpeed;
                 
                 const duration = Math.max(15, Math.min(120, calculatedDuration));
+                const waitingPercentage = Math.min(0.1, 1 / duration);
                 imageControls.start({
                     y: [0, 0, -scrollAmount, 0],
                     transition: {
                         duration: duration,
-                        times: [0, 0.05, 0.5, 1],
+                        times: [0, waitingPercentage, 0.5, 1],
                         ease: "linear",
                         repeat: Infinity
                     }
