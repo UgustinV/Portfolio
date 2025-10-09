@@ -13,8 +13,8 @@ module.exports = {
         foreground: 'var(--color-foreground)',
       },
       fontFamily: {
-        sans: 'var(--font-sans)',
-        mono: 'var(--font-mono)',
+        mono: ['var(--font-vt323)', 'monospace'],
+        vt323: ['var(--font-vt323)', 'monospace'],
       },
     },
   },

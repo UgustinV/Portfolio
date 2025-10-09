@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import { Providers } from "@/components/providers";
 import { StructuredData } from "@/components/structured-data";
-import { Geist, Geist_Mono } from "next/font/google";
+import { VT323 } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const vt323 = VT323({
+    variable: "--font-vt323",
+    subsets: ["latin"],
+    weight: "400"
 });
 
 export const metadata: Metadata = {
@@ -91,8 +87,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-        <StructuredData />
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <head>
+            <StructuredData />
+        </head>
+        <body className={`${vt323.variable} antialiased`}>
             <Providers>
                 {children}
             </Providers>

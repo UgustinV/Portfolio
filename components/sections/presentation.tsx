@@ -16,41 +16,41 @@ export const PresentationSection = () => {
                 initial={{ opacity: 0, y: "-100vw" }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.2 }}
-                className="text-5xl pb-2 animate-[--animate-slide-in]"
+                className="text-5xl lg:text-9xl pb-2 animate-[--animate-slide-in]"
             >
                 Augustin Viard
             </motion.h1>
             <motion.h2
-                className="mb-[10vh] text-2xl"
+                className="mb-[10vh] text-3xl lg:text-5xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.2 }}
             >
-                Développeur Web
+                Développeur Web - Full Stack
             </motion.h2>
             <motion.p
-                className="text-center"
+                className="text-center mx-3 text-xl lg:text-3xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.6 }}
             >
-                Je m'appelle Augustin, j'ai {age} ans et je suis Développeur Web freelance.
+                Je m'appelle Augustin, j'ai {age} ans et je suis Développeur Web Full Stack en freelance.
             </motion.p>
             <motion.p
-                className="text-center"
+                className="text-center mt-[5vh] mx-3 text-xl lg:text-3xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.8 }}
             >
-                Naviguez sur le site pour en apprendre plus sur mes projets et mon parcours.
+                Naviguez sur le site pour en apprendre plus sur mes projets, mon parcours et mes compétences.
             </motion.p>
             <img 
-                className="w-20 h-20 mt-[25vh] animate-bounce dark:block hidden" 
+                className="w-20 lg:w-40 mt-[25vh] lg:mt-[20vh] animate-bounce dark:block hidden" 
                 src="/white_arrow.svg" 
                 alt="Arrow"
             />
             <img 
-                className="w-20 h-20 mt-[25vh] animate-bounce block dark:hidden" 
+                className="w-20 lg:w-40 mt-[25vh] lg:mt-[20vh] animate-bounce block dark:hidden" 
                 src="/black_arrow.svg" 
                 alt="Arrow"
             />

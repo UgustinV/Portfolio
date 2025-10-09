@@ -57,10 +57,10 @@ export const SectionCompetences = ({ competences } : { competences: Competence[]
                             <a href={competence.url} target="_blank" rel="noopener noreferrer">
                                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 h-80 flex flex-col items-center justify-center text-center hover:bg-white/20 transition-all duration-300 mx-2 gap-5">
                                     <img className="w-1/3" src={competence.imageUrl} alt={competence.name} />
-                                    <h3 className="text-xl font-bold mb-2">
+                                    <h3 className="text-4xl font-bold mb-2">
                                         {competence.name}
                                     </h3>
-                                    <div className="text-sm font-bold text-blue-900 dark:text-blue-300 mb-3 px-3 py-1 bg-blue-200 dark:bg-blue-500/20 rounded-full">
+                                    <div className="text-xl font-bold text-blue-900 dark:text-blue-300 mb-3 px-3 py-1 bg-blue-200 dark:bg-blue-500/20 rounded-full">
                                         {competence.level == 1 ? "Débutant" : competence.level == 2 ? "Intermédiaire" : competence.level == 3 ? "Avancé" : "Expert"}
                                     </div>
                                 </div>
