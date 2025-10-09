@@ -46,17 +46,22 @@ export const ProjectsSection = ({projects} : Props) => {
         />
     ));
     return(
-        <section className="bg-[#a4c2f4] dark:bg-[#232a49] h-[600vh] pt-[25vh] lg:pt-[10vh]" ref={targetRef}>
-            <div className="sticky top-[25vh] mb-[25vh] h-[50vh] lg:h-[80vh] lg:mb-[10vh] lg:top-[10vh] flex items-center, justify-start overflow-hidden rounded-2xl">
-                <motion.div
-                    className="grid grid-cols-[var(--projects-count)] grid-rows-[1fr]"
-                    style={{
-                        x,
-                        ['--projects-count' as any]: gridRepeat.repeat(projects.length).trim()
-                    }}
-                >
+        <section className="bg-[#a4c2f4] dark:bg-[#232a49] h-[600vh]" ref={targetRef}>
+            <div className="sticky top-0 h-screen flex flex-col">
+                <div className="h-[25vh] lg:h-[10vh] flex items-center justify-center lg:justify-start">
+                    <h2 className="pl-[3vh] text-5xl font-bold">Mes Projets</h2>
+                </div>
+                <div className="flex items-center justify-start overflow-hidden rounded-2xl">
+                    <motion.div
+                        className="grid grid-cols-[var(--projects-count)] grid-rows-[1fr]"
+                        style={{
+                            x,
+                            ['--projects-count' as any]: gridRepeat.repeat(projects.length).trim()
+                        }}
+                    >
                         {projectCards}
-                </motion.div>
+                    </motion.div>
+                </div>
             </div>
         </section>
     )

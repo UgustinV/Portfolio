@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "@/components/providers";
 import { StructuredData } from "@/components/structured-data";
-import { ThemeModeScript } from "flowbite-react";
+import { ThemeModeScript } from "@/components/theme-mode-script";
 import { VT323 } from "next/font/google";
 import "./globals.css";
 
@@ -87,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
         <head>
             <StructuredData />
             <ThemeModeScript />

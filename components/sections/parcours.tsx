@@ -10,14 +10,15 @@ import {
   TimelineTime,
   TimelineTitle,
 } from "flowbite-react";
-import { HiArrowNarrowRight, HiCalendar } from "react-icons/hi";
+import { HiArrowNarrowRight, HiAcademicCap } from "react-icons/hi";
 
 export const SectionParcours = () => {
     return (
         <section className="bg-[#84a8eb] dark:bg-[#304579] h-screen flex flex-col justify-center pl-8">
+            <h2 className="text-6xl font-bold">Mon Parcours</h2>
             <Timeline horizontal>
                 <TimelineItem>
-                    <TimelinePoint icon={HiCalendar} />
+                    <TimelinePoint icon={HiAcademicCap} />
                     <TimelineContent>
                         <TimelineTime>February 2022</TimelineTime>
                         <TimelineTitle>Application UI code in Tailwind CSS</TimelineTitle>
@@ -32,7 +33,7 @@ export const SectionParcours = () => {
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelinePoint icon={HiCalendar} />
+                    <TimelinePoint icon={HiAcademicCap} />
                     <TimelineContent>
                         <TimelineTime>March 2022</TimelineTime>
                         <TimelineTitle>Marketing UI design in Figma</TimelineTitle>
@@ -43,7 +44,7 @@ export const SectionParcours = () => {
                     </TimelineContent>
                 </TimelineItem>
                 <TimelineItem>
-                    <TimelinePoint icon={HiCalendar} />
+                    <TimelinePoint icon={HiAcademicCap} />
                     <TimelineContent>
                         <TimelineTime>April 2022</TimelineTime>
                         <TimelineTitle>E-Commerce UI code in Tailwind CSS</TimelineTitle>
