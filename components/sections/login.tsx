@@ -5,9 +5,9 @@ export const LoginSection = () => {
     return (
         <div className="w-full">
             {!session ? (
-                <button className="flex justify-baseline w-fit p-2.5  hover:cursor-pointer text-sm" onClick={() => signIn("github")}>GitHub login (admin)</button>
+                <button className="flex justify-baseline w-fit p-2.5  hover:cursor-pointer" onClick={() => signIn("github")}>GitHub login (admin)</button>
             ) : (
-                <div className="flex justify-between items-center p-2.5 text-sm w-full">
+                <div className="flex justify-between items-center p-2.5 w-full">
                     <h2>Connecté en tant que {session.user?.name}</h2>
                     <button className="hover:cursor-pointer" onClick={() => signOut()}>Se déconnecter</button>
                 </div>
