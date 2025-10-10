@@ -78,11 +78,15 @@ Créer un fichier `.env` avec :
 
 ```bash
 # Base de données
-DATABASE_URL="postgresql://user:password@localhost:5432/portfolio"
+DATABASE_URL=DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=your_api_key"
 
 # Authentification
 NEXTAUTH_SECRET="votre-secret-nextauth"
 NEXTAUTH_URL="http://localhost:3000"
+
+# GitHub (pour l'authentification)
+GITHUB_CLIENT_ID="votre-client-id"
+GITHUB_CLIENT_SECRET="votre-client-secret"
 
 # Cloudinary
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="votre-cloud-name"
