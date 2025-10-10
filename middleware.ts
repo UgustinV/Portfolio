@@ -5,10 +5,7 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
 
-    if (path.startsWith("/api/auth/") || !path.startsWith("/api/")) {
-        return NextResponse.next();
-    }
-    if(path === "/api/contact") {
+    if (path.startsWith("/api/auth/") || path.startsWith("/api/contact/") || path.startsWith("/api/cleanup-users") || !path.startsWith("/api/")) {
         return NextResponse.next();
     }
     if (path.startsWith("/api/")) {
