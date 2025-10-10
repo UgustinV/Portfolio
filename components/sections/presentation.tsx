@@ -40,12 +40,28 @@ export const PresentationSection = () => {
                 className="text-center mt-[5vh] mx-3 text-xl lg:text-3xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ type: "spring", stiffness: 30, delay: 0.8 }}
+                transition={{ type: "spring", stiffness: 30, delay: 0.6 }}
             >
-                Je serais ravi de vous accompagner dans la réalisation de vos projets web.
+                J'ai toujours été passionné par l'informatique et la découverte du développement web il y a quelques années m'a comblé :
+            </motion.p>
+            <motion.p
+                className="text-center mx-3 text-xl lg:text-3xl"
+                initial={{ opacity: 0, x: "100vw" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", stiffness: 30, delay: 0.6 }}
+            >
+                Ça m'a permis d'allier créativité et logique dans mes projets.
             </motion.p>
             <motion.p
                 className="text-center mt-[5vh] mx-3 text-xl lg:text-3xl"
+                initial={{ opacity: 0, x: "100vw" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", stiffness: 30, delay: 0.8 }}
+            >
+                Je serais ravi de vous accompagner dans la réalisation de vos projets web,
+            </motion.p>
+            <motion.p
+                className="text-center mx-3 text-xl lg:text-3xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.9 }}
