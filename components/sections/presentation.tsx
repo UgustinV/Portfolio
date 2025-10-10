@@ -11,7 +11,7 @@ export const PresentationSection = () => {
         age = year - 2001;
     }
     return (
-        <section className="bg-[#b4cff8] dark:bg-[#1a1d33] flex flex-col h-[100vh] items-center justify-center">
+        <section id="accueil" className="bg-[#b4cff8] dark:bg-[#1a1d33] flex flex-col h-[100vh] items-center justify-center">
             <motion.h1
                 initial={{ opacity: 0, y: "-100vw" }}
                 animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,15 @@ export const PresentationSection = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.8 }}
             >
-                Naviguez sur le site pour en apprendre plus sur mes projets, mon parcours et mes compétences.
+                Je serais ravi de vous accompagner dans la réalisation de vos projets web.
+            </motion.p>
+            <motion.p
+                className="text-center mt-[5vh] mx-3 text-xl lg:text-3xl"
+                initial={{ opacity: 0, x: "100vw" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", stiffness: 30, delay: 0.9 }}
+            >
+                Naviguez sur mon portfolio pour découvrir mon parcours, mes compétences et mes réalisations, ou pour me contacter.
             </motion.p>
             <img 
                 className="w-20 lg:w-40 mt-[25vh] lg:mt-[20vh] animate-bounce dark:block hidden" 

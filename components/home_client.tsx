@@ -55,7 +55,8 @@ export default function HomeClient({ projects: initialProjects, competences: ini
     return (
         <main className="text-black dark:text-white">
             <nav>
-                <ul className="flex gap-5 justify-end p-5 text-xl font-bold fixed w-full z-10">
+                <ul className="hidden lg:flex gap-5 justify-end p-5 text-xl font-bold fixed w-full z-10">
+                    <li><a className="hover:underline" href="#accueil">Accueil</a></li>
                     <li><a className="hover:underline" href="#projects">Projets</a></li>
                     <li><a className="hover:underline" href="#competences">Compétences</a></li>
                     <li><a className="hover:underline" href="#parcours">Parcours</a></li>
