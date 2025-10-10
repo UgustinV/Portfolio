@@ -73,9 +73,9 @@ export const ContactSection = () => {
             )}
             <p className="text-2xl text-center max-w-4xl">Vous pouvez me contacter via le formulaire ci-dessous en suivant les liens suivants :</p>
             <ul className='flex flex-row items-center gap-[10vw] lg:gap-[2vw]'>
-                <li className="text-2xl mt-4"><a className="hover:underline" href="mailto:augustin.viard0@gmail.com" target="_blank" rel="noopener noreferrer"><IoIosMail className="inline-block mr-2" size="5vh" /></a></li>
-                <li className="text-2xl mt-2"><a className="hover:underline" href="https://www.linkedin.com/in/augustin-viard-1a365b314/" target="_blank" rel="noopener noreferrer"><FaLinkedin className="inline-block mr-2" size="5vh" /></a></li>
-                <li className="text-2xl mt-2"><a className="hover:underline" href="https://github.com/UgustinV" target="_blank" rel="noopener noreferrer"><FaGithub className="inline-block mr-2" size="5vh" /></a></li>
+                <li className="text-2xl mt-4"><a className="hover:underline" href="mailto:augustin.viard0@gmail.com" target="_blank" rel="noopener noreferrer"><IoIosMail className="inline-block mr-2" size="5vh" title="Lien d'envoi d'email" /></a></li>
+                <li className="text-2xl mt-2"><a className="hover:underline" href="https://www.linkedin.com/in/augustin-viard-1a365b314/" target="_blank" rel="noopener noreferrer"><FaLinkedin className="inline-block mr-2" size="5vh" title='Lien vers mon profil linkedin' /></a></li>
+                <li className="text-2xl mt-2"><a className="hover:underline" href="https://github.com/UgustinV" target="_blank" rel="noopener noreferrer"><FaGithub className="inline-block mr-2" size="5vh" title='Lien vers mon profil github' /></a></li>
             </ul>
             <form onSubmit={handleSubmit} className="flex flex-col gap-5 lg:gap-10 w-[95vw] lg:w-[60vw] mt-12 lg:mt-0">
                 <div>
