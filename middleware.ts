@@ -1,14 +1,21 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import {
+    apiAuthPrefix,
+    apiPrefix,
+    publicRoutes
+} from "@/routes";
 
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
-
-    if (path.startsWith("/api/auth/") || path.startsWith("/api/contact/") || path.startsWith("/api/cleanup-users") || !path.startsWith("/api/")) {
+    const isPublicRoute = publicRoutes.includes(path);
+    const isAuthRoute = path.startsWith(apiAuthPrefix);
+    const isApiRoute = path.startsWith(apiPrefix);
+    if (isPublicRoute) {
         return NextResponse.next();
     }
-    if (path.startsWith("/api/")) {
+    if (isApiRoute && !isPublicRoute && !isAuthRoute) {
         const token = await getToken({ 
             req: request, 
             secret: process.env.NEXTAUTH_SECRET 
