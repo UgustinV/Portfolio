@@ -21,7 +21,7 @@ export const PresentationSection = () => {
                 Augustin Viard
             </motion.h1>
             <motion.h2
-                className="mb-[10vh] text-3xl lg:text-5xl"
+                className="mb-[5vh] lg:mb-[10vh] text-3xl lg:text-5xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.2 }}
@@ -37,7 +37,7 @@ export const PresentationSection = () => {
                 Je m'appelle Augustin, j'ai {age} ans et je suis Développeur Web Full Stack en freelance.
             </motion.p>
             <motion.p
-                className="text-center mt-[5vh] mx-3 text-xl lg:text-3xl"
+                className="text-center mt-[2vh] lg:mt-[5vh] mx-3 text-xl lg:text-3xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.6 }}
@@ -53,7 +53,7 @@ export const PresentationSection = () => {
                 Ça m'a permis d'allier créativité et logique dans mes projets.
             </motion.p>
             <motion.p
-                className="text-center mt-[5vh] mx-3 text-xl lg:text-3xl"
+                className="text-center mt-[2vh] lg:mt-[5vh] mx-3 text-xl lg:text-3xl"
                 initial={{ opacity: 0, x: "100vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 30, delay: 0.8 }}
@@ -69,7 +69,7 @@ export const PresentationSection = () => {
                 Naviguez sur mon portfolio pour découvrir mon parcours, mes compétences et mes réalisations, ou pour me contacter.
             </motion.p>
             <img 
-                className="w-20 lg:w-40 mt-[25vh] lg:mt-[20vh] animate-bounce dark:block hidden" 
+                className="w-20 lg:w-40 mt-[12vh] lg:mt-[20vh] animate-bounce dark:block hidden" 
                 src="/white_arrow.svg" 
                 alt="Flèche blanche pointant vers le bas"
             />
